@@ -55,7 +55,7 @@
         .sticky-step-bar { position: sticky; top: var(--header-height); z-index: 30; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col overflow-y-scroll">
 
     <!-- Global Header -->
     <header id="main-header" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
@@ -67,7 +67,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-slate-900 tracking-tight leading-none text-base sm:text-lg">Holistic Values Identifier</h1>
-                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v2.7</span>
+                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v2.8</span>
                     </div>
                     <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-0.5">Integrated Framework App</p>
                 </div>
@@ -82,18 +82,11 @@
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full flex-1 relative">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-4 pb-12 w-full flex-1 relative">
         
         <!-- STEP 0: Landing -->
         <div id="step-0" class="step-view active max-w-3xl mx-auto py-8 space-y-12">
             
-            <div class="flex justify-end border-b border-slate-200 pb-4 mb-4">
-                <button onclick="App.goToStep(1)" class="inline-flex items-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
-                    <span>Begin Journey</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-
             <div class="text-center space-y-6">
                 <i class="fa-solid fa-compass text-5xl text-indigo-600 mb-2 drop-shadow-sm"></i>
                 <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -139,15 +132,18 @@
         <!-- STEP 1: Inspiration -->
         <div id="step-1" class="step-view space-y-8">
             <!-- Action Bar -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-6">
                 <div class="flex items-center gap-3">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Prime Your Mind</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Inspiration</h2>
                     <button onclick="App.showInfo(1)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
-                <button onclick="App.goToStep(2)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
-                    <span>Continue</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="App.goToStep(0)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
+                    <button onclick="App.goToStep(2)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
+                        <span>Next</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
             
             <p class="text-slate-600 text-lg max-w-3xl">
@@ -173,25 +169,25 @@
         <div id="step-2" class="step-view">
             
             <!-- Ultra-Minimal Sticky Header -->
-            <div class="sticky-step-bar bg-slate-50/95 backdrop-blur-md pt-4 pb-4 border-b border-slate-200/80 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] -mx-4 px-4 sm:-mx-6 sm:px-6 mb-6">
-                <div class="flex items-center justify-between gap-4">
-                    <div class="flex items-center gap-2">
-                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Select Resonant Values</h2>
+            <div class="sticky-step-bar bg-slate-50/95 backdrop-blur-md pb-4 border-b border-slate-200/80 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] -mx-4 px-4 sm:-mx-6 sm:px-6 mb-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Selection</h2>
                         <button onclick="App.showInfo(2)" class="w-6 h-6 shrink-0 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                     </div>
                     
-                    <div class="flex items-center gap-3 shrink-0">
-                        <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-100 shadow-sm flex items-center gap-2">
+                    <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                        <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-100 shadow-sm flex items-center gap-2 shrink-0">
                             <div id="selection-count" class="text-xl font-black text-indigo-600 leading-none">0</div>
                             <div class="text-[9px] text-indigo-800 font-bold uppercase tracking-widest leading-none">Selected</div>
                         </div>
-                        <button id="btn-to-step3" onclick="App.goToStep(3)" class="hidden sm:flex items-center justify-center space-x-1.5 px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md" disabled>
-                            <span>Proceed</span>
-                            <i class="fa-solid fa-chevron-right text-xs"></i>
-                        </button>
-                        <button id="btn-to-step3-mobile" onclick="App.goToStep(3)" class="flex sm:hidden items-center justify-center w-9 h-9 rounded-xl bg-indigo-600 text-white disabled:opacity-40 shadow-md" disabled>
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <button onclick="App.goToStep(1)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
+                            <button id="btn-to-step3" onclick="App.goToStep(3)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md" disabled>
+                                <span>Next</span>
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,17 +215,18 @@
         <!-- STEP 3: ACT Sort -->
         <div id="step-3" class="step-view space-y-6">
             <!-- Action Bar -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-6">
                 <div class="flex items-center gap-3">
-                    <div class="inline-flex items-center space-x-1.5 bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-magnifying-glass"></i><span>Card Sort</span>
-                    </div>
-                    <h2 class="text-2xl font-extrabold text-slate-900">Categorize Selections</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Sort</h2>
                     <button onclick="App.showInfo(3)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
-                <button onclick="App.goToStep(2)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Back to Selection</span>
-                </button>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="App.goToStep(2)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
+                    <button id="btn-to-step4" onclick="App.goToStep(4)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md" disabled>
+                        <span>Next</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- ACTIVE SORTING VIEW -->
@@ -295,16 +292,13 @@
 
         <!-- STEP 4: Core 5 -->
         <div id="step-4" class="step-view space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-6">
                 <div class="flex items-center gap-3">
-                    <div class="inline-flex items-center space-x-1.5 bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-bullseye"></i><span>The Crux</span>
-                    </div>
-                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Isolate Your Core 5</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Core 5</h2>
                     <button onclick="App.showInfo(4)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
                 
-                <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
                     <button onclick="App.goToStep(3)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
                     <button id="btn-to-step5" onclick="App.goToStep(5)" disabled class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md">
                         <span>Next</span>
@@ -363,20 +357,17 @@
 
         <!-- STEP 5: Behaviors -->
         <div id="step-5" class="step-view space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-6">
                 <div class="flex items-center gap-3">
-                    <div class="inline-flex items-center space-x-1.5 bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-pen-nib"></i><span>Dare to Lead</span>
-                    </div>
-                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Values are Verbs</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Behaviors</h2>
                     <button onclick="App.showInfo(5)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
                 
-                <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
                     <button onclick="App.goToStep(4)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
                     <button onclick="App.goToStep(6)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
-                        <span>Blueprint</span>
-                        <i class="fa-solid fa-flag-checkered"></i>
+                        <span>Next</span>
+                        <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
@@ -392,13 +383,16 @@
 
         <!-- STEP 6: Blueprint -->
         <div id="step-6" class="step-view space-y-6">
-            <div class="flex justify-between items-center bg-white p-4 sm:px-6 rounded-2xl border border-slate-200 shadow-sm print:hidden">
-                <h2 class="font-bold text-slate-900 text-lg">Your Compass is Ready</h2>
-                <div class="flex space-x-3">
-                    <button onclick="App.copyManifesto()" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-6 print:hidden">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Blueprint</h2>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="App.goToStep(5)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
+                    <button onclick="App.copyManifesto()" class="flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors shadow-sm">
                         <i class="fa-solid fa-copy"></i> <span id="copy-btn-text">Copy</span>
                     </button>
-                    <button onclick="window.print()" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-colors">
+                    <button onclick="window.print()" class="flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-colors">
                         <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">Print / PDF</span>
                     </button>
                 </div>
@@ -521,7 +515,7 @@
             1: { title: "Narrative & Shadow Work", content: "<p>The <strong>Heroes Exercise</strong> acts as a mirror for your golden shadow—traits you possess or deeply desire but project onto others. Jungian psychology suggests what we intensely admire is often a dormant part of our own potential.</p><p>The <strong>Legacy Exercise</strong> (inspired by Stephen Covey's <em>'Begin with the end in mind'</em>) strips away short-term ego goals, forcing you to look at the macro-narrative of your life's meaning.</p>" },
             2: { title: "The Meaning Movement Taxonomy", content: "<p>Most people select values based on what they think they <em>should</em> be (aspirational) rather than what they are. By casting a wide, fast net across a categorized taxonomy (inspired by <em>The Meaning Movement</em> and Shalom Schwartz's Theory of Basic Human Values), you bypass overthinking and tap into gut-level resonance.</p>" },
             3: { title: "ACT Card Sort", content: "<p>This is a digital adaptation of the <strong>Values Card Sort</strong> heavily utilized in <strong>Acceptance and Commitment Therapy (ACT)</strong>. It forces cognitive defusion. You cannot have 30 'essential' values—that is merely a wish list. By forcing categorization into <em>Essential</em>, <em>Important</em>, and <em>Not Important</em>, you clarify the hierarchy of your psychological needs.</p>" },
-            4: { title: "The Conflict Test", content: "<p>When everything is a priority, nothing is a priority. <strong>The Conflict Test</strong> forces a head-to-head comparison (paired comparison analysis) to break ties. If you had to sacrifice one, which would it be? This reveals your absolute bedrock principles—the Core 5.</p>" },
+            4: { title: "The Crux & The Conflict Test", content: "<p>When everything is a priority, nothing is a priority. <strong>The Conflict Test</strong> forces a head-to-head comparison (paired comparison analysis) to break ties. If you had to sacrifice one, which would it be? This reveals your absolute bedrock principles—the Core 5.</p>" },
             5: { title: "Values are Verbs (Dare to Lead)", content: "<p>Brené Brown's research in <em>Dare to Lead</em> emphasizes that <strong>values without behaviors are just meaningless platitudes</strong>. A value must be operationalized. By defining the specific supportive actions and the 'warning signs' of misalignment, you create an actionable, measurable framework for your daily life.</p>" }
         };
 
@@ -654,10 +648,9 @@
                 document.getElementById('selection-count').innerText = count;
                 
                 const btn = document.getElementById('btn-to-step3');
-                const btnM = document.getElementById('btn-to-step3-mobile');
                 
-                if (count >= 5) { btn.removeAttribute('disabled'); btnM.removeAttribute('disabled'); } 
-                else { btn.setAttribute('disabled', 'true'); btnM.setAttribute('disabled', 'true'); }
+                if (count >= 5) { btn.removeAttribute('disabled'); } 
+                else { btn.setAttribute('disabled', 'true'); }
             },
 
             renderStep2Grid() {
@@ -712,8 +705,10 @@
                 const idx = this.state.sortIndex;
                 const activeView = document.getElementById('act-sort-active');
                 const completeView = document.getElementById('act-sort-complete');
+                const btnNext = document.getElementById('btn-to-step4');
 
                 if (idx < total) {
+                    btnNext.setAttribute('disabled', 'true');
                     activeView.classList.remove('hidden');
                     completeView.classList.add('hidden');
                     
@@ -735,6 +730,7 @@
                     document.getElementById('act-progress-bar').style.width = `${((idx) / Math.max(1, total)) * 100}%`;
                     document.getElementById('act-progress-bar').className = `h-full transition-all duration-300 ${cTheme.activeBg}`;
                 } else {
+                    btnNext.removeAttribute('disabled');
                     activeView.classList.add('hidden');
                     completeView.classList.remove('hidden');
                     document.getElementById('sort-result-text').innerText = `You identified ${this.state.sortedValues.essential.length} essential values.`;
@@ -978,18 +974,20 @@
             copyManifesto() {
                 const text = `MY CORE VALUES BLUEPRINT\n\nMY CORE 5 VALUES:\n${this.state.topValues.map((v, i) => `${i + 1}. ${v.toUpperCase()}\n   Category: ${this.getCategoryObj(v).name}\n   Behaviors: ${this.state.behaviors[v]?.actions || 'Not defined'}\n   Warning signs: ${this.state.behaviors[v]?.warning || 'Not defined'}`).join('\n\n')}`;
                 
-                if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text); } 
-                else {
-                    let textArea = document.createElement("textarea"); textArea.value = text;
-                    textArea.style.position = "fixed"; textArea.style.left = "-999999px";
-                    document.body.appendChild(textArea); textArea.focus(); textArea.select();
-                    try { document.execCommand('copy'); } catch (err) {}
-                    document.body.removeChild(textArea);
-                }
+                // Directly use the fallback which works securely inside embedded iframes
+                let textArea = document.createElement("textarea"); 
+                textArea.value = text;
+                textArea.style.position = "fixed"; 
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea); 
+                textArea.focus(); 
+                textArea.select();
+                try { document.execCommand('copy'); } catch (err) { console.warn("Clipboard copy failed.", err); }
+                document.body.removeChild(textArea);
 
                 const btnText = document.getElementById('copy-btn-text');
                 btnText.innerText = 'Copied!';
-                setTimeout(() => { btnText.innerText = 'Copy Text'; }, 3000);
+                setTimeout(() => { btnText.innerText = 'Copy'; }, 3000);
             },
 
             confirmReset() { if (this.state.step > 0) { document.getElementById('custom-modal').classList.add('active'); } },
