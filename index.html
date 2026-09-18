@@ -146,7 +146,7 @@
                 </div>
             </div>
             
-            <p class="text-slate-600 text-lg max-w-3xl">
+            <p class="text-slate-600 text-lg mb-8 max-w-3xl">
                 Before looking at a list of words, let's tap into your subconscious. These two classic coaching questions will help anchor your choices in reality, not aspiration.
             </p>
 
@@ -169,7 +169,7 @@
         <div id="step-2" class="step-view">
             
             <!-- Ultra-Minimal Sticky Header -->
-            <div class="sticky-step-bar bg-slate-50/95 backdrop-blur-md pb-4 border-b border-slate-200/80 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] -mx-4 px-4 sm:-mx-6 sm:px-6 mb-6">
+            <div class="sticky-step-bar bg-slate-50 pt-2 pb-4 border-b border-slate-200 mb-6 z-30">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div class="flex items-center gap-3">
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Selection</h2>
@@ -193,17 +193,22 @@
             </div>
 
             <!-- Non-Sticky Controls (Instructions, Search, Custom) -->
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pt-2">
-                <p class="text-slate-600 text-base flex-1">Select any word that sparks a "yes" in your gut. Aim for a wide net (15 to 35 values).</p>
+            <div class="flex items-center justify-between gap-4 mb-8">
+                <p class="text-slate-600 text-lg flex-1">Select any word that sparks a "yes" in your gut. Aim for a wide net (15 to 35 values).</p>
                 
-                <div class="flex flex-wrap items-center gap-3 shrink-0 w-full sm:w-auto">
-                    <div class="relative flex-1 sm:flex-none">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="text" id="search-input" oninput="App.handleSearch(this.value)" placeholder="Search values..." class="w-full sm:w-48 pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium bg-white shadow-sm">
+                <div class="flex items-center gap-3 shrink-0">
+                    <!-- Search Toggle -->
+                    <div class="relative flex items-center z-10">
+                        <input type="text" id="search-input" oninput="App.handleSearch(this.value)" placeholder="Search values..." class="hidden absolute right-12 w-48 px-3 py-2 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium bg-white shadow-sm transition-all">
+                        <button onclick="const el = document.getElementById('search-input'); el.classList.toggle('hidden'); if(!el.classList.contains('hidden')) el.focus();" class="w-10 h-10 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center transition-colors relative z-20"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
-                    <div class="flex flex-1 sm:flex-none gap-2">
-                        <input type="text" id="custom-input" placeholder="Custom value..." class="w-full sm:w-36 px-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium bg-white shadow-sm">
-                        <button onclick="App.addCustomValue()" class="w-10 h-10 shrink-0 rounded-xl bg-slate-800 text-white font-bold hover:bg-slate-700 transition-colors shadow-sm flex items-center justify-center"><i class="fa-solid fa-plus"></i></button>
+                    <!-- Custom Toggle -->
+                    <div class="relative flex items-center z-10">
+                        <div id="custom-input-container" class="hidden absolute right-12 flex items-center gap-2 bg-white p-1.5 rounded-xl shadow-lg border border-slate-200 w-56">
+                            <input type="text" id="custom-input" placeholder="Custom value..." class="w-full px-2 py-1.5 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 font-medium bg-white">
+                            <button onclick="App.addCustomValue(); document.getElementById('custom-input-container').classList.add('hidden');" class="w-8 h-8 shrink-0 rounded-lg bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center"><i class="fa-solid fa-check"></i></button>
+                        </div>
+                        <button onclick="const el = document.getElementById('custom-input-container'); el.classList.toggle('hidden'); if(!el.classList.contains('hidden')) document.getElementById('custom-input').focus();" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-colors relative z-20"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -228,6 +233,10 @@
                     </button>
                 </div>
             </div>
+
+            <p class="text-slate-600 text-lg mb-8 max-w-3xl">
+                Sort each value into one of three buckets. Be ruthless—not everything can be "Essential".
+            </p>
 
             <!-- ACTIVE SORTING VIEW -->
             <div id="act-sort-active" class="hidden">
@@ -307,8 +316,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <p class="text-base text-slate-600 max-w-2xl" id="top5-instruction-text">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <p class="text-slate-600 text-lg max-w-3xl" id="top5-instruction-text">
                     You have X essential values. Select exactly 5. If you're stuck, run the "Conflict Test" to force a head-to-head decision.
                 </p>
                 <button onclick="App.startDuel()" class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 font-bold text-sm transition-all shadow-md">
@@ -372,7 +381,7 @@
                 </div>
             </div>
 
-            <p class="text-base text-slate-600 max-w-3xl">
+            <p class="text-slate-600 text-lg mb-8 max-w-3xl">
                 A value is just a wish until it becomes a behavior. Define exactly what it looks like when you are living these values, and the warning signs when you are not.
             </p>
 
