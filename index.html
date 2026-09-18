@@ -42,7 +42,7 @@
         }
     </script>
     <style>
-        :root { --header-height: 70px; }
+        :root { --header-height: 114px; }
         body { -webkit-font-smoothing: antialiased; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -61,13 +61,13 @@
     <header id="main-header" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-[70px] flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="App.confirmReset()">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md shrink-0">
                     <i class="fa-solid fa-brain"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-slate-900 tracking-tight leading-none text-base sm:text-lg">Holistic Values Identifier</h1>
-                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v2.5</span>
+                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v2.7</span>
                     </div>
                     <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-0.5">Integrated Framework App</p>
                 </div>
@@ -85,45 +85,54 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full flex-1 relative">
         
         <!-- STEP 0: Landing -->
-        <div id="step-0" class="step-view active space-y-8">
-            <div class="flex justify-end">
+        <div id="step-0" class="step-view active max-w-3xl mx-auto py-8 space-y-12">
+            
+            <div class="flex justify-end border-b border-slate-200 pb-4 mb-4">
                 <button onclick="App.goToStep(1)" class="inline-flex items-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
                     <span>Begin Journey</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
 
-            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl relative overflow-hidden text-center max-w-4xl mx-auto mt-4">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-50 to-transparent rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10 max-w-2xl mx-auto space-y-6">
-                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                        <i class="fa-solid fa-compass text-3xl"></i>
-                    </div>
-                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                        Discover the true compass of your life.
-                    </h2>
-                    <p class="text-slate-600 text-lg sm:text-xl leading-relaxed">
-                        Most value exercises fail because they force you to pick from a list arbitrarily. This app combines the world's most effective psychological frameworks into a single, cohesive journey.
-                    </p>
-                </div>
+            <div class="text-center space-y-6">
+                <i class="fa-solid fa-compass text-5xl text-indigo-600 mb-2 drop-shadow-sm"></i>
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                    Discover your true compass.
+                </h2>
+                <p class="text-slate-600 text-lg sm:text-xl leading-relaxed">
+                    Most value exercises fail because they force you to pick arbitrarily from a disconnected list. This journey combines the world's most effective psychological frameworks into a single, cohesive narrative to help you find your absolute core.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all">
-                    <div class="text-xs font-black text-indigo-600 tracking-widest uppercase mb-2">Method 1</div>
-                    <h3 class="font-bold text-slate-900 text-lg mb-2">Acceptance & Commitment</h3>
-                    <p class="text-sm text-slate-600">Uses the ACT therapy "Card Sort" method to force clarity between what is essential versus what is just nice to have.</p>
+            <div class="space-y-10 border-t border-slate-200 pt-12">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                    <div class="w-12 h-12 shrink-0 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-xl font-black shadow-inner">1</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-xl mb-2">Acceptance & Commitment</h3>
+                        <p class="text-slate-600 text-base leading-relaxed">We start by utilizing the ACT therapy "Card Sort" method. This forces essential cognitive defusion to clearly separate what is fundamentally you versus what is just nice to have.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all">
-                    <div class="text-xs font-black text-indigo-600 tracking-widest uppercase mb-2">Method 2</div>
-                    <h3 class="font-bold text-slate-900 text-lg mb-2">Dare to Lead</h3>
-                    <p class="text-sm text-slate-600">Translates abstract values into actual, lived verbs and identifies warning signs of misalignment (Inspired by Brené Brown).</p>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                    <div class="w-12 h-12 shrink-0 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-black shadow-inner">2</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-xl mb-2">The Meaning Movement</h3>
+                        <p class="text-slate-600 text-base leading-relaxed">Leveraging a comprehensive taxonomy of values, we cast a wide net and then execute conflict prioritization (the "Conflict Test") to isolate your bedrock Core 5 principles.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all">
-                    <div class="text-xs font-black text-indigo-600 tracking-widest uppercase mb-2">Method 3</div>
-                    <h3 class="font-bold text-slate-900 text-lg mb-2">The Meaning Movement</h3>
-                    <p class="text-sm text-slate-600">Uses a comprehensive taxonomy of 150+ categorized values and conflict prioritization.</p>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                    <div class="w-12 h-12 shrink-0 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-black shadow-inner">3</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-xl mb-2">Dare to Lead</h3>
+                        <p class="text-slate-600 text-base leading-relaxed">Finally, inspired by Brené Brown's research, we translate these abstract values into actual, lived verbs. You will define the specific actions that support your values and pinpoint the exact warning signs of misalignment.</p>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="text-center pt-8 border-t border-slate-200">
+                <button onclick="App.goToStep(1)" class="inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-lg shadow-xl shadow-slate-900/20 transition-transform transform hover:-translate-y-1">
+                    <span>Begin the Assessment</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
         </div>
 
@@ -141,32 +150,21 @@
                 </button>
             </div>
             
-            <p class="text-slate-600 text-lg">
+            <p class="text-slate-600 text-lg max-w-3xl">
                 Before looking at a list of words, let's tap into your subconscious. These two classic coaching questions will help anchor your choices in reality, not aspiration.
             </p>
 
-            <!-- Flush Content Layout (No nesting boxes) -->
             <div class="space-y-10">
                 <div class="space-y-4">
-                    <label class="flex items-center space-x-3">
-                        <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-xl flex items-center justify-center font-black">1</span>
-                        <span class="text-xl font-bold text-slate-900">The Heroes Exercise</span>
-                    </label>
-                    <p class="text-slate-600 pl-11">Think of 2-3 people you deeply admire. What specific character traits do you admire in them?</p>
-                    <div class="pl-11">
-                        <textarea id="input-heroes" rows="3" oninput="App.updateInspiration('heroes', this.value)" placeholder="E.g., I admire my grandfather's resilience and unwavering honesty..." class="w-full p-5 text-base rounded-2xl border border-slate-300 bg-white focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
-                    </div>
+                    <label class="block font-bold text-slate-900 text-xl">Your Heroes</label>
+                    <p class="text-slate-600">Think of 2-3 people you deeply admire. What specific character traits do you admire in them?</p>
+                    <textarea id="input-heroes" rows="3" oninput="App.updateInspiration('heroes', this.value)" placeholder="E.g., I admire my grandfather's resilience and unwavering honesty..." class="w-full p-5 text-base rounded-2xl border border-slate-300 bg-white focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
                 </div>
 
                 <div class="space-y-4">
-                    <label class="flex items-center space-x-3">
-                        <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-xl flex items-center justify-center font-black">2</span>
-                        <span class="text-xl font-bold text-slate-900">The Legacy Exercise</span>
-                    </label>
-                    <p class="text-slate-600 pl-11">Imagine your 80th birthday party. What do you hope they say about who you were?</p>
-                    <div class="pl-11">
-                        <textarea id="input-legacy" rows="3" oninput="App.updateInspiration('legacy', this.value)" placeholder="E.g., They would say I was always there for my family and pursued my passions..." class="w-full p-5 text-base rounded-2xl border border-slate-300 bg-white focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
-                    </div>
+                    <label class="block font-bold text-slate-900 text-xl">Your Legacy</label>
+                    <p class="text-slate-600">Imagine your 80th birthday party. What do you hope they say about who you were?</p>
+                    <textarea id="input-legacy" rows="3" oninput="App.updateInspiration('legacy', this.value)" placeholder="E.g., They would say I was always there for my family and pursued my passions..." class="w-full p-5 text-base rounded-2xl border border-slate-300 bg-white focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
                 </div>
             </div>
         </div>
@@ -183,7 +181,6 @@
                     </div>
                     
                     <div class="flex items-center gap-3 shrink-0">
-                        <!-- Compact Counter -->
                         <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-100 shadow-sm flex items-center gap-2">
                             <div id="selection-count" class="text-xl font-black text-indigo-600 leading-none">0</div>
                             <div class="text-[9px] text-indigo-800 font-bold uppercase tracking-widest leading-none">Selected</div>
@@ -192,7 +189,6 @@
                             <span>Proceed</span>
                             <i class="fa-solid fa-chevron-right text-xs"></i>
                         </button>
-                        <!-- Mobile-only compact proceed button -->
                         <button id="btn-to-step3-mobile" onclick="App.goToStep(3)" class="flex sm:hidden items-center justify-center w-9 h-9 rounded-xl bg-indigo-600 text-white disabled:opacity-40 shadow-md" disabled>
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
@@ -200,31 +196,19 @@
                 </div>
             </div>
 
-            <p class="text-slate-600 mb-6 text-base max-w-3xl">Select any word that sparks a "yes" in your gut. Aim for a wide net (15 to 35 values). Don't overthink it.</p>
-
-            <!-- Non-Sticky Controls (Categories, Search, Custom) -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-                <!-- Categories Array -->
-                <div id="category-filters" class="flex flex-wrap items-center gap-2 text-xs flex-1">
-                    <!-- Filters injected here -->
-                </div>
+            <!-- Non-Sticky Controls (Instructions, Search, Custom) -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pt-2">
+                <p class="text-slate-600 text-base flex-1">Select any word that sparks a "yes" in your gut. Aim for a wide net (15 to 35 values).</p>
                 
-                <!-- Action Icons -->
-                <div class="flex items-center gap-2 shrink-0 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
-                    <button onclick="App.toggleUI('search')" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-indigo-600 flex items-center justify-center transition-colors" title="Search Values"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button onclick="App.toggleUI('custom')" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-indigo-600 flex items-center justify-center transition-colors" title="Add Custom Value"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-            
-            <!-- Hidden Input Rows -->
-            <div id="action-inputs-container" class="hidden mb-6 bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
-                <div id="search-input-wrapper" class="hidden relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="search-input" oninput="App.handleSearch(this.value)" placeholder="Search specific values..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium">
-                </div>
-                <div id="custom-input-wrapper" class="hidden flex w-full gap-2">
-                    <input type="text" id="custom-input" placeholder="Type a custom value..." class="flex-1 px-3 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium">
-                    <button onclick="App.addCustomValue()" class="px-5 py-2 rounded-lg bg-slate-800 text-white text-sm font-bold hover:bg-slate-700 transition-colors shadow-sm">Add Value</button>
+                <div class="flex flex-wrap items-center gap-3 shrink-0 w-full sm:w-auto">
+                    <div class="relative flex-1 sm:flex-none">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="search-input" oninput="App.handleSearch(this.value)" placeholder="Search values..." class="w-full sm:w-48 pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium bg-white shadow-sm">
+                    </div>
+                    <div class="flex flex-1 sm:flex-none gap-2">
+                        <input type="text" id="custom-input" placeholder="Custom value..." class="w-full sm:w-36 px-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium bg-white shadow-sm">
+                        <button onclick="App.addCustomValue()" class="w-10 h-10 shrink-0 rounded-xl bg-slate-800 text-white font-bold hover:bg-slate-700 transition-colors shadow-sm flex items-center justify-center"><i class="fa-solid fa-plus"></i></button>
+                    </div>
                 </div>
             </div>
 
@@ -250,7 +234,7 @@
 
             <!-- ACTIVE SORTING VIEW -->
             <div id="act-sort-active" class="hidden">
-                <div class="flex flex-col lg:flex-row items-stretch gap-4 sm:gap-6">
+                <div class="flex flex-col md:flex-row items-stretch gap-4 sm:gap-6">
                     
                     <!-- FLASHCARD (Expands to fill) -->
                     <div id="act-flashcard" class="flex-1 rounded-3xl p-8 sm:p-12 shadow-lg border-2 flex flex-col items-center justify-center min-h-[45vh] sm:min-h-[55vh] transition-colors duration-300 relative bg-white border-slate-200">
@@ -267,24 +251,24 @@
                         <h3 id="current-sort-value" class="text-4xl sm:text-6xl font-black text-center tracking-tight text-slate-900 break-words max-w-full px-4 leading-tight">Value</h3>
                         
                         <!-- Subtle progress bar at bottom of card -->
-                        <div class="absolute bottom-0 left-0 w-full h-1.5 bg-slate-100">
+                        <div class="absolute bottom-0 left-0 w-full h-1.5 bg-slate-100 overflow-hidden rounded-b-3xl">
                             <div id="act-progress-bar" class="bg-slate-300 h-full transition-all duration-300" style="width: 0%"></div>
                         </div>
                     </div>
                     
-                    <!-- BUTTONS (Right on desktop, Bottom on mobile) -->
-                    <div class="w-full lg:w-72 shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-4">
-                        <button onclick="App.processSort('secondary')" class="flex-1 p-4 lg:p-6 rounded-2xl border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-600 flex flex-col items-center justify-center gap-1 transition-all">
-                            <span class="text-lg lg:text-xl font-bold">Not Important</span>
-                            <span class="text-[10px] sm:text-xs text-slate-400 font-medium">Nice, but not a priority</span>
+                    <!-- BUTTONS (Stacked side on Desktop, Bottom on Mobile) -->
+                    <div class="w-full md:w-56 shrink-0 flex flex-col sm:flex-row md:flex-col gap-3">
+                        <button onclick="App.processSort('essential')" class="flex-1 py-4 px-3 rounded-2xl border-2 border-indigo-600 bg-indigo-600 text-white shadow-md hover:bg-indigo-700 hover:-translate-y-1 flex flex-col items-center justify-center gap-1 transition-all">
+                            <span class="text-lg font-bold">Essential</span>
+                            <span class="text-[10px] text-indigo-200 font-medium">Core to who I am</span>
                         </button>
-                        <button onclick="App.processSort('important')" class="flex-1 p-4 lg:p-6 rounded-2xl border-2 border-blue-200 hover:bg-blue-50 hover:border-blue-300 text-blue-700 flex flex-col items-center justify-center gap-1 transition-all">
-                            <span class="text-lg lg:text-xl font-bold">Important</span>
-                            <span class="text-[10px] sm:text-xs text-blue-500/80 font-medium">It matters to me</span>
+                        <button onclick="App.processSort('important')" class="flex-1 py-4 px-3 rounded-2xl border-2 border-blue-200 hover:bg-blue-50 hover:border-blue-300 text-blue-700 flex flex-col items-center justify-center gap-1 transition-all">
+                            <span class="text-lg font-bold">Important</span>
+                            <span class="text-[10px] text-blue-500/80 font-medium">Matters to me</span>
                         </button>
-                        <button onclick="App.processSort('essential')" class="flex-1 p-4 lg:p-6 rounded-2xl border-2 border-indigo-600 bg-indigo-600 text-white shadow-md hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-1 flex flex-col items-center justify-center gap-1 transition-all">
-                            <span class="text-lg lg:text-xl font-bold">Essential</span>
-                            <span class="text-[10px] sm:text-xs text-indigo-200 font-medium">Core to who I am</span>
+                        <button onclick="App.processSort('secondary')" class="flex-1 py-4 px-3 rounded-2xl border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-600 flex flex-col items-center justify-center gap-1 transition-all">
+                            <span class="text-lg font-bold">Not Important</span>
+                            <span class="text-[10px] text-slate-400 font-medium">Nice, but not me</span>
                         </button>
                     </div>
                 </div>
@@ -292,15 +276,15 @@
 
             <!-- SORTING COMPLETE VIEW -->
             <div id="act-sort-complete" class="hidden">
-                <div class="flex flex-col lg:flex-row items-stretch gap-6">
-                    <div class="flex-1 bg-white rounded-3xl p-10 sm:p-12 text-center border border-slate-200 shadow-xl flex flex-col items-center justify-center min-h-[40vh]">
+                <div class="flex flex-col md:flex-row items-stretch gap-4 sm:gap-6">
+                    <div class="flex-1 bg-white rounded-3xl p-10 text-center border border-slate-200 shadow-xl flex flex-col items-center justify-center min-h-[40vh]">
                         <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 shadow-inner">
                             <i class="fa-solid fa-check text-4xl"></i>
                         </div>
                         <h3 class="text-3xl font-extrabold text-slate-900 mb-2">Sorting Complete!</h3>
                         <p class="text-slate-600 text-lg" id="sort-result-text">You identified X essential values.</p>
                     </div>
-                    <div class="w-full lg:w-72 shrink-0 flex flex-col justify-center gap-4">
+                    <div class="w-full md:w-64 shrink-0 flex flex-col justify-center gap-4">
                          <button onclick="App.goToStep(4)" class="w-full p-6 rounded-2xl bg-indigo-600 text-white font-bold text-xl shadow-lg hover:bg-indigo-700 hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-1">
                             Proceed to Top 5 <i class="fa-solid fa-arrow-right ml-1"></i>
                          </button>
@@ -339,23 +323,29 @@
                 </button>
             </div>
 
-            <!-- Duel Overlay -->
-            <div id="duel-modal" class="hidden bg-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl space-y-10 border border-slate-800">
+            <!-- Lighter, Brighter Duel Overlay -->
+            <div id="duel-modal" class="hidden bg-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-200 space-y-10">
                 <div class="text-center">
-                    <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-4 border border-slate-700">
-                        <i class="fa-solid fa-scale-balanced text-2xl text-indigo-400"></i>
+                    <div class="w-16 h-16 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-4 border border-indigo-100">
+                        <i class="fa-solid fa-scale-balanced text-2xl"></i>
                     </div>
-                    <h3 class="font-bold text-2xl">The Conflict Test</h3>
-                    <p class="text-slate-400 mt-2 text-lg">If you could only keep ONE of these for the rest of your life, which takes priority?</p>
-                    <div class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/20 text-xs font-bold text-indigo-300 mt-6 uppercase tracking-widest" id="duel-progress">Match X remaining</div>
+                    <h3 class="font-bold text-2xl text-slate-900">The Conflict Test</h3>
+                    <p class="text-slate-600 mt-2 text-lg">If you could only keep ONE of these for the rest of your life, which takes priority?</p>
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-xs font-bold text-slate-500 mt-4 uppercase tracking-widest" id="duel-progress">Match X remaining</div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    <button id="btn-duel-1" onclick="App.handleDuelChoice(1)" class="p-8 sm:p-12 rounded-2xl bg-slate-800 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 transition-all text-center text-3xl font-bold shadow-lg"></button>
-                    <button id="btn-duel-2" onclick="App.handleDuelChoice(2)" class="p-8 sm:p-12 rounded-2xl bg-slate-800 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 transition-all text-center text-3xl font-bold shadow-lg"></button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                    <button onclick="App.handleDuelChoice(1)" class="p-8 sm:p-10 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 border-2 border-slate-100 transition-all text-center shadow-sm hover:shadow-md group">
+                        <div id="btn-duel-1-icon" class="text-sm font-bold text-slate-400 mb-2 group-hover:text-indigo-500 transition-colors"></div>
+                        <div id="btn-duel-1" class="text-3xl font-extrabold text-slate-900 group-hover:text-indigo-700 transition-colors"></div>
+                    </button>
+                    <button onclick="App.handleDuelChoice(2)" class="p-8 sm:p-10 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 border-2 border-slate-100 transition-all text-center shadow-sm hover:shadow-md group">
+                        <div id="btn-duel-2-icon" class="text-sm font-bold text-slate-400 mb-2 group-hover:text-indigo-500 transition-colors"></div>
+                        <div id="btn-duel-2" class="text-3xl font-extrabold text-slate-900 group-hover:text-indigo-700 transition-colors"></div>
+                    </button>
                 </div>
                 
-                <button onclick="App.cancelDuel()" class="block mx-auto text-sm text-slate-500 hover:text-slate-300 font-semibold transition-colors mt-8">Cancel Duel</button>
+                <button onclick="App.cancelDuel()" class="block mx-auto text-sm text-slate-500 hover:text-slate-800 font-semibold underline transition-colors">Cancel Duel</button>
             </div>
 
             <div id="top5-container" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mt-4">
@@ -414,17 +404,17 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-[2rem] p-8 sm:p-14 border border-slate-200 shadow-2xl print:shadow-none print:border-none print:p-0 relative overflow-hidden">
+            <div class="bg-white rounded-[2rem] p-8 sm:p-12 border border-slate-200 shadow-2xl print:shadow-none print:border-none print:p-0 relative overflow-hidden">
                 
                 <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
                 <div class="absolute bottom-0 left-0 w-80 h-80 bg-slate-100 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
 
-                <div class="relative z-10 text-center border-b border-slate-100 pb-10 mb-10">
-                    <div class="w-20 h-20 mx-auto bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-600/30 transform rotate-3">
-                        <i class="fa-solid fa-compass text-4xl -rotate-3"></i>
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">Personal Values Blueprint</h1>
-                    <p class="text-slate-500 mt-3 text-lg font-medium">A holistic framework for decision making and living authentically.</p>
+                <div class="relative z-10 text-center border-b border-slate-100 pb-8 mb-8">
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <i class="fa-solid fa-compass text-indigo-600"></i>
+                        <span>Personal Values Blueprint</span>
+                    </h1>
+                    <p class="text-slate-500 mt-2 text-base font-medium">A holistic framework for decision making and living authentically.</p>
                 </div>
 
                 <div class="relative z-10 space-y-12">
@@ -499,7 +489,7 @@
     </div>
 
     <script>
-        // Centralized Theme Data ensuring tailwind loads classes
+        // Centralized Theme Data
         const THEMES = {
             indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-700', iconBg: 'bg-indigo-100', activeBg: 'bg-indigo-600', ring: 'ring-indigo-500' },
             emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', iconBg: 'bg-emerald-100', activeBg: 'bg-emerald-600', ring: 'ring-emerald-500' },
@@ -537,12 +527,11 @@
 
         const App = {
             state: {
-                step: 0, inspirations: { heroes: '', legacy: '' }, selectedValues: [], searchTerm: '', categoryFilter: 'all', sortIndex: 0, sortedValues: { essential: [], important: [], secondary: [] }, topValues: [], duelActive: false, duelPairs: [], duelScores: {}, behaviors: {}
+                step: 0, inspirations: { heroes: '', legacy: '' }, selectedValues: [], searchTerm: '', sortIndex: 0, sortedValues: { essential: [], important: [], secondary: [] }, topValues: [], duelActive: false, duelPairs: [], duelScores: {}, behaviors: {}
             },
 
             init() {
                 this.renderHeader();
-                this.renderStep2Filters();
                 this.renderStep2Grid();
                 
                 document.getElementById('custom-input').addEventListener('keypress', (e) => {
@@ -577,7 +566,11 @@
                 this.state.step = stepNum;
                 
                 document.querySelectorAll('.step-view').forEach(el => el.classList.remove('active'));
-                document.getElementById(`step-${stepNum}`).classList.add('active');
+                
+                const nextStepEl = document.getElementById(`step-${stepNum}`);
+                if (nextStepEl) {
+                    nextStepEl.classList.add('active');
+                }
                 
                 const progCont = document.getElementById('progress-container');
                 if (stepNum > 0) {
@@ -600,33 +593,32 @@
                     { step: 6, name: 'Blueprint', icon: 'fa-compass' }
                 ];
 
-                // Inject Reset Button on the left
                 let html = `
-                    <button onclick="App.confirmReset()" class="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 font-bold transition-colors">
+                    <button onclick="App.confirmReset()" class="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-500 hover:bg-rose-100 hover:text-rose-600 font-bold transition-colors">
                         <i class="fa-solid fa-rotate-right"></i><span class="hidden sm:inline">Start Fresh</span>
                     </button>
                     <div class="w-px h-6 bg-slate-200 mx-2 shrink-0"></div>
                 `;
 
-                steps.forEach(s => {
+                steps.forEach((s, i) => {
                     const isActive = this.state.step === s.step;
                     const isPassed = this.state.step > s.step;
                     let cls = 'text-slate-400 cursor-not-allowed';
-                    let iconCls = 'text-slate-300';
+                    let badgeCls = 'bg-slate-200 text-slate-500';
                     
                     if (isActive) {
                         cls = 'bg-indigo-600 text-white shadow-sm cursor-default';
-                        iconCls = 'text-indigo-200';
+                        badgeCls = 'bg-white/30 text-white';
                     } else if (isPassed) {
                         cls = 'text-indigo-700 hover:bg-indigo-100/60 cursor-pointer';
-                        iconCls = 'text-indigo-600';
+                        badgeCls = 'bg-indigo-200 text-indigo-800';
                     }
 
                     const canClick = isPassed || (this.state.step > 0 && s.step < this.state.step);
                     html += `
                         <button onclick="${canClick ? `App.goToStep(${s.step})` : ''}" class="flex shrink-0 items-center space-x-2 px-3 py-1.5 rounded-lg transition-all ${cls}">
-                            <i class="fa-solid ${s.icon} ${iconCls}"></i>
-                            <span class="whitespace-nowrap">${s.name}</span>
+                            <span class="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black ${badgeCls}">${i + 1}</span>
+                            <span class="whitespace-nowrap font-semibold">${s.name}</span>
                         </button>
                     `;
                 });
@@ -636,30 +628,6 @@
             updateInspiration(field, value) { this.state.inspirations[field] = value; },
 
             // STEP 2 LOGIC
-            setCategoryFilter(id) {
-                this.state.categoryFilter = id;
-                this.renderStep2Filters();
-                this.renderStep2Grid();
-            },
-            
-            toggleUI(type) {
-                const container = document.getElementById('action-inputs-container');
-                const searchWrap = document.getElementById('search-input-wrapper');
-                const customWrap = document.getElementById('custom-input-wrapper');
-                
-                if (type === 'search') {
-                    container.classList.remove('hidden');
-                    searchWrap.classList.remove('hidden');
-                    customWrap.classList.add('hidden');
-                    document.getElementById('search-input').focus();
-                } else if (type === 'custom') {
-                    container.classList.remove('hidden');
-                    customWrap.classList.remove('hidden');
-                    searchWrap.classList.add('hidden');
-                    document.getElementById('custom-input').focus();
-                }
-            },
-
             handleSearch(val) { this.state.searchTerm = val.toLowerCase(); this.renderStep2Grid(); },
 
             addCustomValue() {
@@ -692,22 +660,11 @@
                 else { btn.setAttribute('disabled', 'true'); btnM.setAttribute('disabled', 'true'); }
             },
 
-            renderStep2Filters() {
-                let html = `<button onclick="App.setCategoryFilter('all')" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors ${this.state.categoryFilter === 'all' ? 'bg-slate-800 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'}">All</button>`;
-                CATEGORIES.forEach(cat => {
-                    const isActive = this.state.categoryFilter === cat.id;
-                    const cTheme = THEMES[cat.theme];
-                    html += `<button onclick="App.setCategoryFilter('${cat.id}')" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors ${isActive ? cTheme.activeBg + ' text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'}">${cat.name}</button>`;
-                });
-                document.getElementById('category-filters').innerHTML = html;
-            },
-
             renderStep2Grid() {
                 const container = document.getElementById('values-grid-container');
                 let html = '';
 
                 CATEGORIES.forEach(cat => {
-                    if (this.state.categoryFilter !== 'all' && this.state.categoryFilter !== cat.id) return;
                     const filteredValues = cat.values.filter(v => v.toLowerCase().includes(this.state.searchTerm));
                     if (filteredValues.length === 0 && this.state.searchTerm) return;
 
@@ -772,7 +729,6 @@
                     document.getElementById('current-sort-icon').className = `fa-solid ${catObj.icon}`;
                     document.getElementById('current-sort-category').innerText = catObj.name;
                     
-                    // Flashcard visual theme
                     const card = document.getElementById('act-flashcard');
                     card.className = `flex-1 rounded-3xl p-8 sm:p-12 shadow-lg border-2 flex flex-col items-center justify-center min-h-[45vh] sm:min-h-[55vh] transition-colors duration-300 relative bg-white ${cTheme.border}`;
 
@@ -880,8 +836,15 @@
 
                 document.getElementById('duel-progress').innerText = `Match ${this.state.duelPairs.length} remaining`;
                 const pair = this.state.duelPairs[0];
+                
+                const cat1 = this.getCategoryObj(pair[0]);
+                const cat2 = this.getCategoryObj(pair[1]);
+                
                 document.getElementById('btn-duel-1').innerText = pair[0];
+                document.getElementById('btn-duel-1-icon').innerHTML = `<i class="fa-solid ${cat1.icon} mr-1"></i> ${cat1.name}`;
+                
                 document.getElementById('btn-duel-2').innerText = pair[1];
+                document.getElementById('btn-duel-2-icon').innerHTML = `<i class="fa-solid ${cat2.icon} mr-1"></i> ${cat2.name}`;
             },
 
             handleDuelChoice(btnIndex) {
@@ -1032,7 +995,7 @@
             confirmReset() { if (this.state.step > 0) { document.getElementById('custom-modal').classList.add('active'); } },
 
             resetApp() {
-                this.state = { step: 0, inspirations: { heroes: '', legacy: '' }, selectedValues: [], searchTerm: '', categoryFilter: 'all', sortIndex: 0, sortedValues: { essential: [], important: [], secondary: [] }, topValues: [], duelActive: false, duelPairs: [], duelScores: {}, behaviors: {} };
+                this.state = { step: 0, inspirations: { heroes: '', legacy: '' }, selectedValues: [], searchTerm: '', sortIndex: 0, sortedValues: { essential: [], important: [], secondary: [] }, topValues: [], duelActive: false, duelPairs: [], duelScores: {}, behaviors: {} };
                 document.getElementById('input-heroes').value = ''; document.getElementById('input-legacy').value = '';
                 document.getElementById('search-input').value = ''; document.getElementById('custom-input').value = '';
                 document.getElementById('custom-modal').classList.remove('active');
