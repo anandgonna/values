@@ -13,8 +13,7 @@
     <meta name="apple-mobile-web-app-title" content="Values">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2220%22%20fill%3D%22%234f46e5%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%228%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2210%22%20fill%3D%22%23ffffff%22%2F%3E%3C%2Fsvg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2220%22%20fill%3D%22%234f46e5%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%228%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2210%22%20fill%3D%22%23ffffff%22%2F%3E%3C%2Fsvg%3E">
-    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Holistic%20Values%20Identifier%22%2C%22short_name%22%3A%22Values%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%23ffffff%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520100%2520100%2522%253E%253Crect%2520width%253D%2522100%2522%2520height%253D%2522100%2522%2520rx%253D%252220%2522%2520fill%253D%2522%25234f46e5%2522%252F%253E%253Ccircle%2520cx%253D%252250%2522%2520cy%253D%252250%2522%2520r%253D%252230%2522%2520fill%253D%2522none%2522%2520stroke%253D%2522%2523ffffff%2522%2520stroke-width%253D%25228%2522%252F%253E%253Ccircle%2520cx%253D%252250%2522%2520cy%253D%252250%2522%2520r%253D%252210%2522%2520fill%253D%2522%2523ffffff%2522%252F%253E%253C%252Fsvg%253E%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22sizes%22%3A%22any%22%7D%5D%7D">
-
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +30,7 @@
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     animation: {
-                        fadeIn: 'fadeIn 0.5s ease-out',
+                        fadeIn: 'fadeIn 0.4s ease-out',
                         slideUp: 'slideUp 0.4s ease-out'
                     },
                     keyframes: {
@@ -43,54 +42,41 @@
         }
     </script>
     <style>
-        :root {
-            --header-height: 105px; /* Fallback height */
-        }
+        :root { --header-height: 70px; }
         body { -webkit-font-smoothing: antialiased; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Step containers */
         .step-view { display: none; }
-        .step-view.active { display: block; animation: fadeIn 0.5s ease-out; }
-
-        /* Custom Modal */
-        #custom-modal { display: none; }
-        #custom-modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
+        .step-view.active { display: block; animation: fadeIn 0.4s ease-out; }
+        #custom-modal, #info-modal { display: none; }
+        #custom-modal.active, #info-modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
         
-        /* Dynamic Sticky Bar for Step 2 */
-        .sticky-step-bar {
-            position: sticky;
-            top: var(--header-height);
-            z-index: 30;
-        }
+        .sticky-step-bar { position: sticky; top: var(--header-height); z-index: 30; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
 
-    <!-- Header -->
+    <!-- Global Header -->
     <header id="main-header" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-[70px] flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="App.confirmReset()">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md">
                     <i class="fa-solid fa-brain"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-slate-900 tracking-tight leading-none text-base sm:text-lg">
-                        Holistic Values Identifier
-                    </h1>
-                    <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Integrated Framework App</p>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-bold text-slate-900 tracking-tight leading-none text-base sm:text-lg">Holistic Values Identifier</h1>
+                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v2.5</span>
+                    </div>
+                    <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-0.5">Integrated Framework App</p>
                 </div>
             </div>
-            <button id="reset-btn" onclick="App.confirmReset()" class="hidden items-center space-x-1 text-xs text-slate-500 hover:text-rose-600 transition-colors px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-rose-50 hover:border-rose-200">
-                <i class="fa-solid fa-rotate-right"></i>
-                <span class="hidden sm:inline font-semibold">Start Fresh</span>
-            </button>
         </div>
 
-        <!-- Progress Stepper -->
+        <!-- Progress Stepper (Includes Start Fresh Button) -->
         <div id="progress-container" class="hidden bg-slate-50 border-t border-slate-200 overflow-x-auto no-scrollbar shadow-inner">
-            <div class="max-w-5xl mx-auto px-4 flex items-center justify-between py-2.5 text-xs font-semibold text-slate-600 min-w-[700px]" id="stepper-nav">
+            <div class="max-w-5xl mx-auto px-4 flex items-center py-2.5 text-xs font-semibold text-slate-600 min-w-max gap-2" id="stepper-nav">
                 <!-- Injected via JS -->
             </div>
         </div>
@@ -100,7 +86,14 @@
         
         <!-- STEP 0: Landing -->
         <div id="step-0" class="step-view active space-y-8">
-            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl relative overflow-hidden text-center max-w-4xl mx-auto">
+            <div class="flex justify-end">
+                <button onclick="App.goToStep(1)" class="inline-flex items-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
+                    <span>Begin Journey</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl relative overflow-hidden text-center max-w-4xl mx-auto mt-4">
                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-50 to-transparent rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-2xl mx-auto space-y-6">
                     <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
@@ -112,12 +105,6 @@
                     <p class="text-slate-600 text-lg sm:text-xl leading-relaxed">
                         Most value exercises fail because they force you to pick from a list arbitrarily. This app combines the world's most effective psychological frameworks into a single, cohesive journey.
                     </p>
-                    <div class="pt-6">
-                        <button onclick="App.goToStep(1)" class="inline-flex items-center space-x-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-lg shadow-lg shadow-indigo-600/30 hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <span>Start Your Journey</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
 
@@ -141,42 +128,44 @@
         </div>
 
         <!-- STEP 1: Inspiration -->
-        <div id="step-1" class="step-view space-y-6">
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 border-b border-slate-100 pb-6">
-                    <div class="flex items-center space-x-3 text-left">
-                        <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center">
-                            <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900">Prime Your Mind</h2>
-                    </div>
-                    <button onclick="App.goToStep(2)" class="flex items-center justify-center space-x-2 w-full sm:w-auto px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all transform hover:-translate-y-0.5">
-                        <span>Continue</span>
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
+        <div id="step-1" class="step-view space-y-8">
+            <!-- Action Bar -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Prime Your Mind</h2>
+                    <button onclick="App.showInfo(1)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
-                
-                <p class="text-slate-600 mb-8 text-lg sm:text-left text-center">
-                    Before looking at a list of words, let's tap into your subconscious. These two classic coaching questions will help anchor your choices in reality, not aspiration.
-                </p>
+                <button onclick="App.goToStep(2)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
+                    <span>Continue</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <p class="text-slate-600 text-lg">
+                Before looking at a list of words, let's tap into your subconscious. These two classic coaching questions will help anchor your choices in reality, not aspiration.
+            </p>
 
-                <div class="space-y-6 text-left">
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner">
-                        <label class="block font-bold text-slate-900 mb-2 flex items-center space-x-2 text-lg">
-                            <span class="bg-indigo-200 text-indigo-800 w-7 h-7 rounded-full flex items-center justify-center text-sm">1</span>
-                            <span>The Heroes Exercise</span>
-                        </label>
-                        <p class="text-sm text-slate-600 mb-4">Think of 2-3 people you deeply admire. What specific character traits do you admire in them?</p>
-                        <textarea id="input-heroes" rows="3" oninput="App.updateInspiration('heroes', this.value)" placeholder="E.g., I admire my grandfather's resilience and unwavering honesty..." class="w-full p-4 text-sm rounded-xl border border-slate-300 focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
+            <!-- Flush Content Layout (No nesting boxes) -->
+            <div class="space-y-10">
+                <div class="space-y-4">
+                    <label class="flex items-center space-x-3">
+                        <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-xl flex items-center justify-center font-black">1</span>
+                        <span class="text-xl font-bold text-slate-900">The Heroes Exercise</span>
+                    </label>
+                    <p class="text-slate-600 pl-11">Think of 2-3 people you deeply admire. What specific character traits do you admire in them?</p>
+                    <div class="pl-11">
+                        <textarea id="input-heroes" rows="3" oninput="App.updateInspiration('heroes', this.value)" placeholder="E.g., I admire my grandfather's resilience and unwavering honesty..." class="w-full p-5 text-base rounded-2xl border border-slate-300 bg-white focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
                     </div>
+                </div>
 
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner">
-                        <label class="block font-bold text-slate-900 mb-2 flex items-center space-x-2 text-lg">
-                            <span class="bg-indigo-200 text-indigo-800 w-7 h-7 rounded-full flex items-center justify-center text-sm">2</span>
-                            <span>The Legacy Exercise</span>
-                        </label>
-                        <p class="text-sm text-slate-600 mb-4">Imagine your 80th birthday party. What do you hope they say about who you were?</p>
-                        <textarea id="input-legacy" rows="3" oninput="App.updateInspiration('legacy', this.value)" placeholder="E.g., They would say I was always there for my family and pursued my passions..." class="w-full p-4 text-sm rounded-xl border border-slate-300 focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
+                <div class="space-y-4">
+                    <label class="flex items-center space-x-3">
+                        <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-xl flex items-center justify-center font-black">2</span>
+                        <span class="text-xl font-bold text-slate-900">The Legacy Exercise</span>
+                    </label>
+                    <p class="text-slate-600 pl-11">Imagine your 80th birthday party. What do you hope they say about who you were?</p>
+                    <div class="pl-11">
+                        <textarea id="input-legacy" rows="3" oninput="App.updateInspiration('legacy', this.value)" placeholder="E.g., They would say I was always there for my family and pursued my passions..." class="w-full p-5 text-base rounded-2xl border border-slate-300 bg-white focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all shadow-sm"></textarea>
                     </div>
                 </div>
             </div>
@@ -184,54 +173,58 @@
 
         <!-- STEP 2: Selection -->
         <div id="step-2" class="step-view">
-            <!-- Redesigned Sticky Top Section for Step 2 -->
-            <div class="sticky-step-bar bg-slate-50/95 backdrop-blur-xl pt-4 pb-4 border-b border-slate-200/80 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] -mx-4 px-4 sm:-mx-6 sm:px-6 mb-6">
-                
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                    <div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Select Resonant Values</h2>
-                        <p class="text-sm text-slate-600 mt-1 max-w-xl">Select any word that sparks a "yes" in your gut. Aim for a wide net (15 to 35 values). Don't overthink it.</p>
+            
+            <!-- Ultra-Minimal Sticky Header -->
+            <div class="sticky-step-bar bg-slate-50/95 backdrop-blur-md pt-4 pb-4 border-b border-slate-200/80 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] -mx-4 px-4 sm:-mx-6 sm:px-6 mb-6">
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Select Resonant Values</h2>
+                        <button onclick="App.showInfo(2)" class="w-6 h-6 shrink-0 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                     </div>
                     
-                    <!-- Actions & Counter Container -->
-                    <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
-                        <!-- Prominent Sticky Counter -->
-                        <div class="bg-white w-full sm:w-auto px-4 py-2 rounded-xl border border-indigo-100 shadow-sm flex items-center justify-center gap-3">
-                            <div class="text-[10px] text-indigo-800 font-bold uppercase tracking-widest text-right leading-tight">Selected<br>Values</div>
-                            <div class="h-8 w-px bg-indigo-100"></div>
-                            <div id="selection-count" class="text-3xl font-black text-indigo-600 leading-none">0</div>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <!-- Compact Counter -->
+                        <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-100 shadow-sm flex items-center gap-2">
+                            <div id="selection-count" class="text-xl font-black text-indigo-600 leading-none">0</div>
+                            <div class="text-[9px] text-indigo-800 font-bold uppercase tracking-widest leading-none">Selected</div>
                         </div>
-                        <button id="btn-to-step3" onclick="App.goToStep(3)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-md" disabled>
-                            <span>Proceed to Sort</span>
+                        <button id="btn-to-step3" onclick="App.goToStep(3)" class="hidden sm:flex items-center justify-center space-x-1.5 px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md" disabled>
+                            <span>Proceed</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                        <!-- Mobile-only compact proceed button -->
+                        <button id="btn-to-step3-mobile" onclick="App.goToStep(3)" class="flex sm:hidden items-center justify-center w-9 h-9 rounded-xl bg-indigo-600 text-white disabled:opacity-40 shadow-md" disabled>
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Search and Filters within Sticky Bar -->
-                <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-2 transition-all">
-                    <!-- Top row: Categories + Action Icons -->
-                    <div class="flex items-center justify-between w-full gap-2">
-                        <div id="category-filters" class="flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs flex-1">
-                            <!-- Filters injected here -->
-                        </div>
-                        <div class="flex items-center gap-1 shrink-0 border-l border-slate-200 pl-2">
-                            <button onclick="App.toggleUI('search')" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-indigo-600 flex items-center justify-center transition-colors" title="Search Values"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <button onclick="App.toggleUI('custom')" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-indigo-600 flex items-center justify-center transition-colors" title="Add Custom Value"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </div>
-                    
-                    <!-- Collapsible Inputs Area -->
-                    <div id="action-inputs-container" class="hidden px-2 pb-2 pt-1 border-t border-slate-100 mt-1">
-                        <div id="search-input-wrapper" class="hidden relative w-full sm:w-64">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                            <input type="text" id="search-input" oninput="App.handleSearch(this.value)" placeholder="Search specific values..." class="w-full pl-8 pr-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium">
-                        </div>
-                        <div id="custom-input-wrapper" class="hidden flex w-full sm:w-80 gap-2">
-                            <input type="text" id="custom-input" placeholder="Add custom value..." class="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium">
-                            <button onclick="App.addCustomValue()" class="px-4 py-2 rounded-lg bg-slate-800 text-white text-xs font-bold hover:bg-slate-700 transition-colors shadow-sm">Add</button>
-                        </div>
-                    </div>
+            <p class="text-slate-600 mb-6 text-base max-w-3xl">Select any word that sparks a "yes" in your gut. Aim for a wide net (15 to 35 values). Don't overthink it.</p>
+
+            <!-- Non-Sticky Controls (Categories, Search, Custom) -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                <!-- Categories Array -->
+                <div id="category-filters" class="flex flex-wrap items-center gap-2 text-xs flex-1">
+                    <!-- Filters injected here -->
+                </div>
+                
+                <!-- Action Icons -->
+                <div class="flex items-center gap-2 shrink-0 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
+                    <button onclick="App.toggleUI('search')" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-indigo-600 flex items-center justify-center transition-colors" title="Search Values"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button onclick="App.toggleUI('custom')" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-indigo-600 flex items-center justify-center transition-colors" title="Add Custom Value"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            
+            <!-- Hidden Input Rows -->
+            <div id="action-inputs-container" class="hidden mb-6 bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                <div id="search-input-wrapper" class="hidden relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="search-input" oninput="App.handleSearch(this.value)" placeholder="Search specific values..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium">
+                </div>
+                <div id="custom-input-wrapper" class="hidden flex w-full gap-2">
+                    <input type="text" id="custom-input" placeholder="Type a custom value..." class="flex-1 px-3 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium">
+                    <button onclick="App.addCustomValue()" class="px-5 py-2 rounded-lg bg-slate-800 text-white text-sm font-bold hover:bg-slate-700 transition-colors shadow-sm">Add Value</button>
                 </div>
             </div>
 
@@ -241,91 +234,109 @@
 
         <!-- STEP 3: ACT Sort -->
         <div id="step-3" class="step-view space-y-6">
-            <div class="flex flex-col sm:flex-row justify-between items-center bg-white p-4 sm:px-6 rounded-2xl border border-slate-200 shadow-sm mb-6 gap-4">
-                <div class="text-left w-full sm:w-auto">
-                    <div class="inline-flex items-center space-x-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-1">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>The ACT Card Sort</span>
+            <!-- Action Bar -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4 mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="inline-flex items-center space-x-1.5 bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-magnifying-glass"></i><span>Card Sort</span>
                     </div>
-                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Categorize Selections</h2>
+                    <h2 class="text-2xl font-extrabold text-slate-900">Categorize Selections</h2>
+                    <button onclick="App.showInfo(3)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
-                <button onclick="App.goToStep(2)" class="px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-colors w-full sm:w-auto flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Back</span>
+                <button onclick="App.goToStep(2)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i> <span>Back to Selection</span>
                 </button>
             </div>
 
-            <div id="act-sort-active" class="bg-white rounded-3xl p-6 sm:p-12 border border-slate-200 shadow-xl text-center relative hidden overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-slate-100">
-                    <div id="act-progress-bar" class="bg-indigo-500 h-full transition-all duration-300" style="width: 0%"></div>
-                </div>
-                
-                <div class="flex justify-between items-center mb-6 mt-2">
-                    <div class="text-sm font-bold text-slate-400 uppercase tracking-widest" id="sort-progress-text">Value 1 of X</div>
-                    <button onclick="App.undoSort()" class="text-sm font-semibold text-slate-400 hover:text-slate-800 transition-colors flex items-center space-x-1">
-                        <i class="fa-solid fa-rotate-left"></i> <span>Undo Last</span>
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-6">
-                    <button onclick="App.processSort('secondary')" class="group p-3 sm:p-5 rounded-2xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-600 font-bold transition-all relative overflow-hidden flex flex-col items-center justify-center h-full">
-                        <span class="block text-sm sm:text-lg relative z-10 leading-tight">Not Important</span>
-                        <span class="hidden sm:block text-xs font-normal text-slate-500 relative z-10 mt-1">Nice, but not a priority</span>
-                    </button>
-                    <button onclick="App.processSort('important')" class="group p-3 sm:p-5 rounded-2xl border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 text-blue-700 font-bold transition-all relative overflow-hidden flex flex-col items-center justify-center h-full">
-                        <span class="block text-sm sm:text-lg relative z-10 leading-tight">Important</span>
-                        <span class="hidden sm:block text-xs font-normal text-blue-600/70 relative z-10 mt-1">It matters to me</span>
-                    </button>
-                    <button onclick="App.processSort('essential')" class="group p-3 sm:p-5 rounded-2xl border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-md shadow-indigo-600/20 transition-all transform hover:-translate-y-1 relative overflow-hidden flex flex-col items-center justify-center h-full">
-                        <span class="block text-sm sm:text-lg relative z-10 leading-tight">Essential</span>
-                        <span class="hidden sm:block text-xs font-normal text-indigo-200 relative z-10 mt-1">Core to who I am</span>
-                    </button>
-                </div>
-
-                <div class="my-4 bg-slate-50 py-10 sm:py-16 px-4 rounded-3xl border border-slate-100 shadow-inner">
-                    <h3 id="current-sort-value" class="text-3xl sm:text-6xl font-black text-slate-900 tracking-tight mb-4 break-words px-2">Value</h3>
-                    <div class="inline-block px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-xs font-bold uppercase tracking-widest shadow-sm" id="current-sort-category">Category</div>
+            <!-- ACTIVE SORTING VIEW -->
+            <div id="act-sort-active" class="hidden">
+                <div class="flex flex-col lg:flex-row items-stretch gap-4 sm:gap-6">
+                    
+                    <!-- FLASHCARD (Expands to fill) -->
+                    <div id="act-flashcard" class="flex-1 rounded-3xl p-8 sm:p-12 shadow-lg border-2 flex flex-col items-center justify-center min-h-[45vh] sm:min-h-[55vh] transition-colors duration-300 relative bg-white border-slate-200">
+                        
+                        <div class="absolute top-6 left-6 text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest" id="sort-progress-text">Value 1 of X</div>
+                        <button onclick="App.undoSort()" class="absolute top-6 right-6 text-[10px] sm:text-xs font-bold text-slate-400 hover:text-slate-800 flex items-center gap-1.5"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+                        
+                        <!-- Dynamic Category Badge -->
+                        <div id="current-sort-category-badge" class="px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-6 flex items-center gap-2 bg-slate-100 text-slate-600">
+                            <i id="current-sort-icon" class="fa-solid fa-circle"></i>
+                            <span id="current-sort-category">Category</span>
+                        </div>
+                        
+                        <h3 id="current-sort-value" class="text-4xl sm:text-6xl font-black text-center tracking-tight text-slate-900 break-words max-w-full px-4 leading-tight">Value</h3>
+                        
+                        <!-- Subtle progress bar at bottom of card -->
+                        <div class="absolute bottom-0 left-0 w-full h-1.5 bg-slate-100">
+                            <div id="act-progress-bar" class="bg-slate-300 h-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- BUTTONS (Right on desktop, Bottom on mobile) -->
+                    <div class="w-full lg:w-72 shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-4">
+                        <button onclick="App.processSort('secondary')" class="flex-1 p-4 lg:p-6 rounded-2xl border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-600 flex flex-col items-center justify-center gap-1 transition-all">
+                            <span class="text-lg lg:text-xl font-bold">Not Important</span>
+                            <span class="text-[10px] sm:text-xs text-slate-400 font-medium">Nice, but not a priority</span>
+                        </button>
+                        <button onclick="App.processSort('important')" class="flex-1 p-4 lg:p-6 rounded-2xl border-2 border-blue-200 hover:bg-blue-50 hover:border-blue-300 text-blue-700 flex flex-col items-center justify-center gap-1 transition-all">
+                            <span class="text-lg lg:text-xl font-bold">Important</span>
+                            <span class="text-[10px] sm:text-xs text-blue-500/80 font-medium">It matters to me</span>
+                        </button>
+                        <button onclick="App.processSort('essential')" class="flex-1 p-4 lg:p-6 rounded-2xl border-2 border-indigo-600 bg-indigo-600 text-white shadow-md hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-1 flex flex-col items-center justify-center gap-1 transition-all">
+                            <span class="text-lg lg:text-xl font-bold">Essential</span>
+                            <span class="text-[10px] sm:text-xs text-indigo-200 font-medium">Core to who I am</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div id="act-sort-complete" class="bg-white rounded-3xl p-10 text-center border border-slate-200 shadow-xl hidden">
-                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                    <i class="fa-solid fa-check text-4xl"></i>
-                </div>
-                <h3 class="text-3xl font-extrabold text-slate-900 mb-2">Sorting Complete!</h3>
-                <p class="text-slate-600 text-lg mb-8" id="sort-result-text">You identified X essential values.</p>
-                <div class="flex justify-center space-x-4">
-                    <button onclick="App.goToStep(4)" class="px-8 py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg shadow-lg hover:bg-indigo-700 hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        Proceed to Top 5
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+            <!-- SORTING COMPLETE VIEW -->
+            <div id="act-sort-complete" class="hidden">
+                <div class="flex flex-col lg:flex-row items-stretch gap-6">
+                    <div class="flex-1 bg-white rounded-3xl p-10 sm:p-12 text-center border border-slate-200 shadow-xl flex flex-col items-center justify-center min-h-[40vh]">
+                        <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                            <i class="fa-solid fa-check text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-slate-900 mb-2">Sorting Complete!</h3>
+                        <p class="text-slate-600 text-lg" id="sort-result-text">You identified X essential values.</p>
+                    </div>
+                    <div class="w-full lg:w-72 shrink-0 flex flex-col justify-center gap-4">
+                         <button onclick="App.goToStep(4)" class="w-full p-6 rounded-2xl bg-indigo-600 text-white font-bold text-xl shadow-lg hover:bg-indigo-700 hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                            Proceed to Top 5 <i class="fa-solid fa-arrow-right ml-1"></i>
+                         </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- STEP 4: Core 5 -->
         <div id="step-4" class="step-view space-y-6">
-            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
-                <div>
-                    <div class="inline-flex items-center space-x-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <span>The Crux</span>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="inline-flex items-center space-x-1.5 bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-bullseye"></i><span>The Crux</span>
                     </div>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Isolate Your Top 5 Core Values</h2>
-                    <p class="text-base text-slate-600 mt-2 max-w-xl" id="top5-instruction-text">
-                        You have X essential values. Select exactly 5. If you're stuck, run the "Conflict Test" to force a head-to-head decision.
-                    </p>
+                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Isolate Your Core 5</h2>
+                    <button onclick="App.showInfo(4)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
-                <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
-                    <button onclick="App.goToStep(3)" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-colors">Back</button>
-                    <button onclick="App.startDuel()" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 text-white hover:bg-slate-800 font-bold text-sm transition-all shadow-md hover:shadow-lg">
-                        <i class="fa-solid fa-scale-balanced"></i>
-                        <span>Duel</span>
-                    </button>
-                    <button id="btn-to-step5" onclick="App.goToStep(5)" disabled class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md">
+                
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button onclick="App.goToStep(3)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
+                    <button id="btn-to-step5" onclick="App.goToStep(5)" disabled class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md">
                         <span>Next</span>
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <p class="text-base text-slate-600 max-w-2xl" id="top5-instruction-text">
+                    You have X essential values. Select exactly 5. If you're stuck, run the "Conflict Test" to force a head-to-head decision.
+                </p>
+                <button onclick="App.startDuel()" class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 font-bold text-sm transition-all shadow-md">
+                    <i class="fa-solid fa-scale-balanced text-indigo-400"></i>
+                    <span>Run Conflict Test</span>
+                </button>
             </div>
 
             <!-- Duel Overlay -->
@@ -340,21 +351,21 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    <button id="btn-duel-1" onclick="App.handleDuelChoice(1)" class="p-8 sm:p-12 rounded-2xl bg-slate-800 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 transition-all text-center text-3xl font-bold shadow-lg hover:shadow-indigo-500/25"></button>
-                    <button id="btn-duel-2" onclick="App.handleDuelChoice(2)" class="p-8 sm:p-12 rounded-2xl bg-slate-800 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 transition-all text-center text-3xl font-bold shadow-lg hover:shadow-indigo-500/25"></button>
+                    <button id="btn-duel-1" onclick="App.handleDuelChoice(1)" class="p-8 sm:p-12 rounded-2xl bg-slate-800 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 transition-all text-center text-3xl font-bold shadow-lg"></button>
+                    <button id="btn-duel-2" onclick="App.handleDuelChoice(2)" class="p-8 sm:p-12 rounded-2xl bg-slate-800 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-500 transition-all text-center text-3xl font-bold shadow-lg"></button>
                 </div>
                 
                 <button onclick="App.cancelDuel()" class="block mx-auto text-sm text-slate-500 hover:text-slate-300 font-semibold transition-colors mt-8">Cancel Duel</button>
             </div>
 
-            <div id="top5-container" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+            <div id="top5-container" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mt-4">
                 <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
                     <h3 class="font-bold text-slate-900 text-lg">Your Essential Pool</h3>
                     <div class="bg-slate-100 px-4 py-1.5 rounded-full flex items-center space-x-2">
                         <span id="top5-counter" class="text-sm font-bold text-slate-500">0 / 5 Selected</span>
                     </div>
                 </div>
-                <div id="top5-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <div id="top5-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     <!-- Injected by JS -->
                 </div>
             </div>
@@ -362,27 +373,29 @@
 
         <!-- STEP 5: Behaviors -->
         <div id="step-5" class="step-view space-y-6">
-            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
-                <div>
-                    <div class="flex items-center space-x-2 text-[10px] font-bold text-indigo-600 uppercase tracking-wider mb-2">
-                        <i class="fa-solid fa-pen-nib"></i>
-                        <span>Dare to Lead Framework</span>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="inline-flex items-center space-x-1.5 bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-pen-nib"></i><span>Dare to Lead</span>
                     </div>
-                    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Values are Verbs</h2>
-                    <p class="text-base text-slate-600 mt-2 max-w-2xl">
-                        A value is just a wish until it becomes a behavior. Define exactly what it looks like when you are living these values, and the warning signs when you are not.
-                    </p>
+                    <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Values are Verbs</h2>
+                    <button onclick="App.showInfo(5)" class="w-6 h-6 rounded-full bg-slate-200 hover:bg-indigo-100 text-slate-500 hover:text-indigo-600 flex items-center justify-center transition-colors"><i class="fa-solid fa-info text-[10px]"></i></button>
                 </div>
-                <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
-                    <button onclick="App.goToStep(4)" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-colors">Back</button>
-                    <button onclick="App.goToStep(6)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
+                
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button onclick="App.goToStep(4)" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition-colors">Back</button>
+                    <button onclick="App.goToStep(6)" class="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
                         <span>Blueprint</span>
                         <i class="fa-solid fa-flag-checkered"></i>
                     </button>
                 </div>
             </div>
 
-            <div id="behaviors-container" class="space-y-6">
+            <p class="text-base text-slate-600 max-w-3xl">
+                A value is just a wish until it becomes a behavior. Define exactly what it looks like when you are living these values, and the warning signs when you are not.
+            </p>
+
+            <div id="behaviors-container" class="space-y-6 mt-6">
                 <!-- Injected by JS -->
             </div>
         </div>
@@ -391,21 +404,20 @@
         <div id="step-6" class="step-view space-y-6">
             <div class="flex justify-between items-center bg-white p-4 sm:px-6 rounded-2xl border border-slate-200 shadow-sm print:hidden">
                 <h2 class="font-bold text-slate-900 text-lg">Your Compass is Ready</h2>
-                <div class="flex space-x-2">
-                    <button onclick="App.copyManifesto()" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors">
-                        <i class="fa-solid fa-copy"></i> <span id="copy-btn-text">Copy Text</span>
+                <div class="flex space-x-3">
+                    <button onclick="App.copyManifesto()" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors">
+                        <i class="fa-solid fa-copy"></i> <span id="copy-btn-text">Copy</span>
                     </button>
-                    <button onclick="window.print()" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-colors">
-                        <i class="fa-solid fa-print"></i> <span>Print / PDF</span>
+                    <button onclick="window.print()" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-colors">
+                        <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">Print / PDF</span>
                     </button>
                 </div>
             </div>
 
             <div class="bg-white rounded-[2rem] p-8 sm:p-14 border border-slate-200 shadow-2xl print:shadow-none print:border-none print:p-0 relative overflow-hidden">
                 
-                <!-- Decorative background elements -->
                 <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-50 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-slate-100 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
 
                 <div class="relative z-10 text-center border-b border-slate-100 pb-10 mb-10">
                     <div class="w-20 h-20 mx-auto bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-600/30 transform rotate-3">
@@ -437,7 +449,6 @@
                     </div>
                     
                     <div id="blueprint-legacy" class="mt-8 p-8 bg-slate-900 text-white rounded-3xl shadow-xl hidden relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjMGYxNzJhIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMWUzYThhIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')] opacity-20"></div>
                         <div class="relative z-10">
                             <h2 class="text-sm font-bold text-indigo-400 uppercase tracking-wider mb-6 flex items-center space-x-2">
                                 <i class="fa-solid fa-anchor"></i>
@@ -460,9 +471,21 @@
         </div>
     </main>
 
+    <!-- Global Info Modal -->
+    <div id="info-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl relative">
+            <button onclick="document.getElementById('info-modal').classList.remove('active')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-5">
+                <i class="fa-solid fa-book-open text-xl"></i>
+            </div>
+            <h3 id="info-modal-title" class="text-2xl font-bold text-slate-900 mb-2">Philosophy & Reference</h3>
+            <div id="info-modal-content" class="text-slate-600 space-y-4 text-sm leading-relaxed"></div>
+        </div>
+    </div>
+
     <!-- Custom Reset Modal -->
-    <div id="custom-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 items-center justify-center">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl transform transition-all">
+    <div id="custom-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl transform transition-all">
             <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mb-6">
                 <i class="fa-solid fa-triangle-exclamation text-3xl"></i>
             </div>
@@ -476,34 +499,45 @@
     </div>
 
     <script>
-        // Data Structure
+        // Centralized Theme Data ensuring tailwind loads classes
+        const THEMES = {
+            indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-700', iconBg: 'bg-indigo-100', activeBg: 'bg-indigo-600', ring: 'ring-indigo-500' },
+            emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', iconBg: 'bg-emerald-100', activeBg: 'bg-emerald-600', ring: 'ring-emerald-500' },
+            rose: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-700', iconBg: 'bg-rose-100', activeBg: 'bg-rose-600', ring: 'ring-rose-500' },
+            amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', iconBg: 'bg-amber-100', activeBg: 'bg-amber-600', ring: 'ring-amber-500' },
+            sky: { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-700', iconBg: 'bg-sky-100', activeBg: 'bg-sky-600', ring: 'ring-sky-500' },
+            violet: { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-700', iconBg: 'bg-violet-100', activeBg: 'bg-violet-600', ring: 'ring-violet-500' },
+            fuchsia: { bg: 'bg-fuchsia-50', border: 'border-fuchsia-200', text: 'text-fuchsia-700', iconBg: 'bg-fuchsia-100', activeBg: 'bg-fuchsia-600', ring: 'ring-fuchsia-500' },
+            teal: { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-700', iconBg: 'bg-teal-100', activeBg: 'bg-teal-600', ring: 'ring-teal-500' },
+            slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-700', iconBg: 'bg-slate-100', activeBg: 'bg-slate-600', ring: 'ring-slate-500' },
+            purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-700', iconBg: 'bg-purple-100', activeBg: 'bg-purple-600', ring: 'ring-purple-500' },
+            gray: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-700', iconBg: 'bg-slate-100', activeBg: 'bg-slate-800', ring: 'ring-slate-500' }
+        };
+
         const CATEGORIES = [
-            { id: 'integrity', name: 'Integrity & Character', icon: 'fa-shield-halved', description: 'How you show up and who you are when no one is watching.', values: ['Honesty', 'Authenticity', 'Integrity', 'Ethics', 'Trustworthiness', 'Humility', 'Accountability', 'Fairness', 'Honor', 'Reliability', 'Consistency', 'Transparency', 'Genuineness', 'Sincerity', 'Moral courage', 'Principled', 'Character', 'Virtue', 'Truthfulness', 'Dependability'] },
-            { id: 'achievement', name: 'Achievement & Ambition', icon: 'fa-bullseye', description: 'Focusing on excellence, results, and pushing yourself forward.', values: ['Success', 'Excellence', 'Achievement', 'Ambition', 'Mastery', 'Competence', 'Skill', 'Performance', 'Results', 'Hard work', 'Perseverance', 'Determination', 'Goals', 'Drive', 'Progress', 'Accomplishment', 'Recognition', 'Winning', 'Personal best', 'Growth mindset', 'Persistence', 'Diligence'] },
-            { id: 'relationships', name: 'Relationships & Connection', icon: 'fa-heart', description: 'How you relate to others, foster intimacy, and build community.', values: ['Family', 'Friendship', 'Love', 'Community', 'Belonging', 'Connection', 'Loyalty', 'Trust', 'Compassion', 'Empathy', 'Kindness', 'Generosity', 'Support', 'Collaboration', 'Partnership', 'Intimacy', 'Acceptance', 'Understanding', 'Forgiveness', 'Respect', 'Appreciation', 'Warmth'] },
-            { id: 'growth', name: 'Growth & Learning', icon: 'fa-book-open', description: 'Continuous development, expanding understanding, and curiosity.', values: ['Learning', 'Growth', 'Curiosity', 'Wisdom', 'Knowledge', 'Education', 'Self-improvement', 'Development', 'Reflection', 'Open-mindedness', 'Adaptability', 'Discovery', 'Exploration', 'Insight', 'Study', 'Reading', 'Research', 'Questions', 'Wonder', 'Intellectual stimulation', 'Understanding', 'Awareness'] },
-            { id: 'freedom', name: 'Freedom & Independence', icon: 'fa-compass', description: 'Autonomy, self-determination, agency, and breaking convention.', values: ['Freedom', 'Independence', 'Autonomy', 'Self-reliance', 'Liberty', 'Choice', 'Flexibility', 'Spontaneity', 'Adventure', 'Courage', 'Risk-taking', 'Boldness', 'Individuality', 'Nonconformity', 'Self-direction', 'Agency', 'Space', 'Possibility', 'Exploration', 'Breaking conventions', 'Travel'] },
-            { id: 'service', name: 'Service & Contribution', icon: 'fa-wand-magic-sparkles', description: 'Making an impact beyond yourself and leaving a legacy.', values: ['Service', 'Contribution', 'Helping others', 'Impact', 'Purpose', 'Meaning', 'Making a difference', 'Volunteering', 'Philanthropy', 'Generosity', 'Compassion', 'Advocacy', 'Social justice', 'Mentoring', 'Teaching', 'Legacy', 'Giving back', 'Supporting others', 'Community service', 'Altruism', 'Stewardship'] },
-            { id: 'creativity', name: 'Creativity & Expression', icon: 'fa-feather', description: 'Imagination, originality, craftsmanship, and making things.', values: ['Creativity', 'Innovation', 'Imagination', 'Originality', 'Art', 'Expression', 'Design', 'Beauty', 'Aesthetics', 'Vision', 'Inspiration', 'Ingenuity', 'Craftsmanship', 'Artistry', 'Inventiveness', 'Novelty', 'Creative problem-solving', 'Self-expression', 'Uniqueness', 'Style'] },
-            { id: 'wellbeing', name: 'Health & Wellbeing', icon: 'fa-sun', description: 'Nurturing physical, mental, and emotional health and balance.', values: ['Health', 'Wellness', 'Balance', 'Energy', 'Vitality', 'Self-care', 'Mindfulness', 'Peace', 'Calm', 'Serenity', 'Rest', 'Fitness', 'Nutrition', 'Longevity', 'Mental health', 'Emotional wellbeing', 'Happiness', 'Joy', 'Contentment', 'Presence', 'Resilience', 'Recovery'] },
-            { id: 'security', name: 'Security & Stability', icon: 'fa-lock', description: 'Safety, order, predictability, financial stability, and foundation.', values: ['Security', 'Stability', 'Safety', 'Financial security', 'Order', 'Structure', 'Predictability', 'Control', 'Planning', 'Preparation', 'Practicality', 'Responsibility', 'Discipline', 'Organization', 'Consistency', 'Reliability', 'Certainty', 'Protection', 'Foundation', 'Prudence', 'Caution'] },
-            { id: 'spirituality', name: 'Faith & Spirituality', icon: 'fa-bolt', description: 'Connecting to meaning, purpose, or a presence beyond the material world.', values: ['Faith', 'Spirituality', 'Religion', 'Meaning', 'Transcendence', 'Hope', 'Gratitude', 'Reverence', 'Awe', 'Sacred', 'Divine', 'Prayer', 'Meditation', 'Inner peace', 'Spiritual growth', 'Belief', 'Trust in something greater', 'Soul', 'Spirit', 'Connection to the divine', 'Presence', 'Acceptance'] }
+            { id: 'integrity', name: 'Integrity & Character', icon: 'fa-shield-halved', theme: 'indigo', values: ['Honesty', 'Authenticity', 'Integrity', 'Ethics', 'Trustworthiness', 'Humility', 'Accountability', 'Fairness', 'Honor', 'Reliability', 'Consistency', 'Transparency', 'Genuineness', 'Sincerity', 'Moral courage', 'Principled', 'Character', 'Virtue', 'Truthfulness', 'Dependability'] },
+            { id: 'achievement', name: 'Achievement & Ambition', icon: 'fa-bullseye', theme: 'emerald', values: ['Success', 'Excellence', 'Achievement', 'Ambition', 'Mastery', 'Competence', 'Skill', 'Performance', 'Results', 'Hard work', 'Perseverance', 'Determination', 'Goals', 'Drive', 'Progress', 'Accomplishment', 'Recognition', 'Winning', 'Personal best', 'Growth mindset', 'Persistence', 'Diligence'] },
+            { id: 'relationships', name: 'Relationships & Connection', icon: 'fa-heart', theme: 'rose', values: ['Family', 'Friendship', 'Love', 'Community', 'Belonging', 'Connection', 'Loyalty', 'Trust', 'Compassion', 'Empathy', 'Kindness', 'Generosity', 'Support', 'Collaboration', 'Partnership', 'Intimacy', 'Acceptance', 'Understanding', 'Forgiveness', 'Respect', 'Appreciation', 'Warmth'] },
+            { id: 'growth', name: 'Growth & Learning', icon: 'fa-book-open', theme: 'amber', values: ['Learning', 'Growth', 'Curiosity', 'Wisdom', 'Knowledge', 'Education', 'Self-improvement', 'Development', 'Reflection', 'Open-mindedness', 'Adaptability', 'Discovery', 'Exploration', 'Insight', 'Study', 'Reading', 'Research', 'Questions', 'Wonder', 'Intellectual stimulation', 'Understanding', 'Awareness'] },
+            { id: 'freedom', name: 'Freedom & Independence', icon: 'fa-compass', theme: 'sky', values: ['Freedom', 'Independence', 'Autonomy', 'Self-reliance', 'Liberty', 'Choice', 'Flexibility', 'Spontaneity', 'Adventure', 'Courage', 'Risk-taking', 'Boldness', 'Individuality', 'Nonconformity', 'Self-direction', 'Agency', 'Space', 'Possibility', 'Exploration', 'Breaking conventions', 'Travel'] },
+            { id: 'service', name: 'Service & Contribution', icon: 'fa-wand-magic-sparkles', theme: 'violet', values: ['Service', 'Contribution', 'Helping others', 'Impact', 'Purpose', 'Meaning', 'Making a difference', 'Volunteering', 'Philanthropy', 'Generosity', 'Compassion', 'Advocacy', 'Social justice', 'Mentoring', 'Teaching', 'Legacy', 'Giving back', 'Supporting others', 'Community service', 'Altruism', 'Stewardship'] },
+            { id: 'creativity', name: 'Creativity & Expression', icon: 'fa-feather', theme: 'fuchsia', values: ['Creativity', 'Innovation', 'Imagination', 'Originality', 'Art', 'Expression', 'Design', 'Beauty', 'Aesthetics', 'Vision', 'Inspiration', 'Ingenuity', 'Craftsmanship', 'Artistry', 'Inventiveness', 'Novelty', 'Creative problem-solving', 'Self-expression', 'Uniqueness', 'Style'] },
+            { id: 'wellbeing', name: 'Health & Wellbeing', icon: 'fa-sun', theme: 'teal', values: ['Health', 'Wellness', 'Balance', 'Energy', 'Vitality', 'Self-care', 'Mindfulness', 'Peace', 'Calm', 'Serenity', 'Rest', 'Fitness', 'Nutrition', 'Longevity', 'Mental health', 'Emotional wellbeing', 'Happiness', 'Joy', 'Contentment', 'Presence', 'Resilience', 'Recovery'] },
+            { id: 'security', name: 'Security & Stability', icon: 'fa-lock', theme: 'slate', values: ['Security', 'Stability', 'Safety', 'Financial security', 'Order', 'Structure', 'Predictability', 'Control', 'Planning', 'Preparation', 'Practicality', 'Responsibility', 'Discipline', 'Organization', 'Consistency', 'Reliability', 'Certainty', 'Protection', 'Foundation', 'Prudence', 'Caution'] },
+            { id: 'spirituality', name: 'Faith & Spirituality', icon: 'fa-bolt', theme: 'purple', values: ['Faith', 'Spirituality', 'Religion', 'Transcendence', 'Hope', 'Gratitude', 'Reverence', 'Awe', 'Sacred', 'Divine', 'Prayer', 'Meditation', 'Inner peace', 'Spiritual growth', 'Belief', 'Soul', 'Spirit', 'Presence', 'Acceptance'] }
         ];
+
+        const INFO_CONTENT = {
+            1: { title: "Narrative & Shadow Work", content: "<p>The <strong>Heroes Exercise</strong> acts as a mirror for your golden shadow—traits you possess or deeply desire but project onto others. Jungian psychology suggests what we intensely admire is often a dormant part of our own potential.</p><p>The <strong>Legacy Exercise</strong> (inspired by Stephen Covey's <em>'Begin with the end in mind'</em>) strips away short-term ego goals, forcing you to look at the macro-narrative of your life's meaning.</p>" },
+            2: { title: "The Meaning Movement Taxonomy", content: "<p>Most people select values based on what they think they <em>should</em> be (aspirational) rather than what they are. By casting a wide, fast net across a categorized taxonomy (inspired by <em>The Meaning Movement</em> and Shalom Schwartz's Theory of Basic Human Values), you bypass overthinking and tap into gut-level resonance.</p>" },
+            3: { title: "ACT Card Sort", content: "<p>This is a digital adaptation of the <strong>Values Card Sort</strong> heavily utilized in <strong>Acceptance and Commitment Therapy (ACT)</strong>. It forces cognitive defusion. You cannot have 30 'essential' values—that is merely a wish list. By forcing categorization into <em>Essential</em>, <em>Important</em>, and <em>Not Important</em>, you clarify the hierarchy of your psychological needs.</p>" },
+            4: { title: "The Conflict Test", content: "<p>When everything is a priority, nothing is a priority. <strong>The Conflict Test</strong> forces a head-to-head comparison (paired comparison analysis) to break ties. If you had to sacrifice one, which would it be? This reveals your absolute bedrock principles—the Core 5.</p>" },
+            5: { title: "Values are Verbs (Dare to Lead)", content: "<p>Brené Brown's research in <em>Dare to Lead</em> emphasizes that <strong>values without behaviors are just meaningless platitudes</strong>. A value must be operationalized. By defining the specific supportive actions and the 'warning signs' of misalignment, you create an actionable, measurable framework for your daily life.</p>" }
+        };
 
         const App = {
             state: {
-                step: 0,
-                inspirations: { heroes: '', legacy: '' },
-                selectedValues: [],
-                searchTerm: '',
-                categoryFilter: 'all',
-                sortIndex: 0,
-                sortedValues: { essential: [], important: [], secondary: [] },
-                topValues: [],
-                duelActive: false,
-                duelPairs: [],
-                duelScores: {},
-                behaviors: {}
+                step: 0, inspirations: { heroes: '', legacy: '' }, selectedValues: [], searchTerm: '', categoryFilter: 'all', sortIndex: 0, sortedValues: { essential: [], important: [], secondary: [] }, topValues: [], duelActive: false, duelPairs: [], duelScores: {}, behaviors: {}
             },
 
             init() {
@@ -511,32 +545,30 @@
                 this.renderStep2Filters();
                 this.renderStep2Grid();
                 
-                // Add event listeners for enter key on custom input
                 document.getElementById('custom-input').addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') this.addCustomValue();
                 });
-
-                // Calculate header height dynamically for the sticky step bar
-                window.addEventListener('resize', () => this.updateHeaderHeight());
-                // Initial calculation
-                this.updateHeaderHeight();
             },
 
-            updateHeaderHeight() {
-                setTimeout(() => {
-                    const header = document.getElementById('main-header');
-                    if (header) {
-                        const height = header.offsetHeight;
-                        document.documentElement.style.setProperty('--header-height', `${height}px`);
-                    }
-                }, 50); // slight delay to ensure DOM is rendered
+            getCategoryObj(val) {
+                for (let cat of CATEGORIES) {
+                    if (cat.values.includes(val)) return cat;
+                }
+                return { id: 'custom', name: 'Custom / General', icon: 'fa-asterisk', theme: 'gray' };
+            },
+
+            showInfo(step) {
+                const info = INFO_CONTENT[step];
+                if(info) {
+                    document.getElementById('info-modal-title').innerText = info.title;
+                    document.getElementById('info-modal-content').innerHTML = info.content;
+                    document.getElementById('info-modal').classList.add('active');
+                }
             },
 
             goToStep(stepNum) {
-                // Validation before moving
                 if (stepNum === 3 && this.state.selectedValues.length < 5) return;
                 
-                // Setup logic when entering specific steps
                 if (stepNum === 3) this.initStep3();
                 if (stepNum === 4) this.initStep4();
                 if (stepNum === 5) this.initStep5();
@@ -544,25 +576,17 @@
 
                 this.state.step = stepNum;
                 
-                // Update UI Views
                 document.querySelectorAll('.step-view').forEach(el => el.classList.remove('active'));
                 document.getElementById(`step-${stepNum}`).classList.add('active');
                 
-                // Toggle reset button
-                const resetBtn = document.getElementById('reset-btn');
                 const progCont = document.getElementById('progress-container');
                 if (stepNum > 0) {
-                    resetBtn.classList.remove('hidden');
-                    resetBtn.classList.add('flex');
                     progCont.classList.remove('hidden');
                 } else {
-                    resetBtn.classList.add('hidden');
-                    resetBtn.classList.remove('flex');
                     progCont.classList.add('hidden');
                 }
 
                 this.renderHeader();
-                this.updateHeaderHeight();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             },
 
@@ -570,13 +594,20 @@
                 const steps = [
                     { step: 1, name: 'Inspiration', icon: 'fa-wand-magic-sparkles' },
                     { step: 2, name: 'Selection', icon: 'fa-layer-group' },
-                    { step: 3, name: 'ACT Sort', icon: 'fa-magnifying-glass' },
+                    { step: 3, name: 'Sort', icon: 'fa-magnifying-glass' },
                     { step: 4, name: 'Core 5', icon: 'fa-bullseye' },
                     { step: 5, name: 'Behaviors', icon: 'fa-heart' },
                     { step: 6, name: 'Blueprint', icon: 'fa-compass' }
                 ];
 
-                let html = '';
+                // Inject Reset Button on the left
+                let html = `
+                    <button onclick="App.confirmReset()" class="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 font-bold transition-colors">
+                        <i class="fa-solid fa-rotate-right"></i><span class="hidden sm:inline">Start Fresh</span>
+                    </button>
+                    <div class="w-px h-6 bg-slate-200 mx-2 shrink-0"></div>
+                `;
+
                 steps.forEach(s => {
                     const isActive = this.state.step === s.step;
                     const isPassed = this.state.step > s.step;
@@ -584,30 +615,25 @@
                     let iconCls = 'text-slate-300';
                     
                     if (isActive) {
-                        cls = 'bg-indigo-600 text-white shadow-md cursor-default';
+                        cls = 'bg-indigo-600 text-white shadow-sm cursor-default';
                         iconCls = 'text-indigo-200';
                     } else if (isPassed) {
-                        cls = 'text-indigo-700 hover:bg-indigo-100 cursor-pointer';
+                        cls = 'text-indigo-700 hover:bg-indigo-100/60 cursor-pointer';
                         iconCls = 'text-indigo-600';
                     }
 
-                    // For step 2 specifically, allow back navigation if we have values
                     const canClick = isPassed || (this.state.step > 0 && s.step < this.state.step);
-                    
                     html += `
-                        <button onclick="${canClick ? `App.goToStep(${s.step})` : ''}" class="flex items-center space-x-2 px-4 py-2 rounded-xl transition-all font-bold ${cls}">
+                        <button onclick="${canClick ? `App.goToStep(${s.step})` : ''}" class="flex shrink-0 items-center space-x-2 px-3 py-1.5 rounded-lg transition-all ${cls}">
                             <i class="fa-solid ${s.icon} ${iconCls}"></i>
                             <span class="whitespace-nowrap">${s.name}</span>
                         </button>
                     `;
                 });
-                
                 document.getElementById('stepper-nav').innerHTML = html;
             },
 
-            updateInspiration(field, value) {
-                this.state.inspirations[field] = value;
-            },
+            updateInspiration(field, value) { this.state.inspirations[field] = value; },
 
             // STEP 2 LOGIC
             setCategoryFilter(id) {
@@ -615,39 +641,26 @@
                 this.renderStep2Filters();
                 this.renderStep2Grid();
             },
-
-            handleSearch(val) {
-                this.state.searchTerm = val.toLowerCase();
-                this.renderStep2Grid();
-            },
-
+            
             toggleUI(type) {
                 const container = document.getElementById('action-inputs-container');
                 const searchWrap = document.getElementById('search-input-wrapper');
                 const customWrap = document.getElementById('custom-input-wrapper');
                 
                 if (type === 'search') {
-                    if (!searchWrap.classList.contains('hidden')) {
-                        container.classList.add('hidden');
-                        searchWrap.classList.add('hidden');
-                    } else {
-                        container.classList.remove('hidden');
-                        searchWrap.classList.remove('hidden');
-                        customWrap.classList.add('hidden');
-                        document.getElementById('search-input').focus();
-                    }
+                    container.classList.remove('hidden');
+                    searchWrap.classList.remove('hidden');
+                    customWrap.classList.add('hidden');
+                    document.getElementById('search-input').focus();
                 } else if (type === 'custom') {
-                    if (!customWrap.classList.contains('hidden')) {
-                        container.classList.add('hidden');
-                        customWrap.classList.add('hidden');
-                    } else {
-                        container.classList.remove('hidden');
-                        customWrap.classList.remove('hidden');
-                        searchWrap.classList.add('hidden');
-                        document.getElementById('custom-input').focus();
-                    }
+                    container.classList.remove('hidden');
+                    customWrap.classList.remove('hidden');
+                    searchWrap.classList.add('hidden');
+                    document.getElementById('custom-input').focus();
                 }
             },
+
+            handleSearch(val) { this.state.searchTerm = val.toLowerCase(); this.renderStep2Grid(); },
 
             addCustomValue() {
                 const input = document.getElementById('custom-input');
@@ -662,41 +675,29 @@
 
             toggleValue(val) {
                 const idx = this.state.selectedValues.indexOf(val);
-                if (idx > -1) {
-                    this.state.selectedValues.splice(idx, 1);
-                } else {
-                    this.state.selectedValues.push(val);
-                }
+                if (idx > -1) { this.state.selectedValues.splice(idx, 1); } 
+                else { this.state.selectedValues.push(val); }
                 this.renderStep2Grid();
                 this.updateStep2Counter();
             },
 
             updateStep2Counter() {
                 const count = this.state.selectedValues.length;
+                document.getElementById('selection-count').innerText = count;
                 
-                // Animate counter
-                const counterEl = document.getElementById('selection-count');
-                counterEl.innerText = count;
-                counterEl.classList.remove('scale-100');
-                counterEl.classList.add('scale-125', 'text-indigo-500');
-                setTimeout(() => {
-                    counterEl.classList.remove('scale-125', 'text-indigo-500');
-                    counterEl.classList.add('scale-100');
-                }, 200);
-
                 const btn = document.getElementById('btn-to-step3');
-                if (count >= 5) {
-                    btn.removeAttribute('disabled');
-                } else {
-                    btn.setAttribute('disabled', 'true');
-                }
+                const btnM = document.getElementById('btn-to-step3-mobile');
+                
+                if (count >= 5) { btn.removeAttribute('disabled'); btnM.removeAttribute('disabled'); } 
+                else { btn.setAttribute('disabled', 'true'); btnM.setAttribute('disabled', 'true'); }
             },
 
             renderStep2Filters() {
-                let html = `<button onclick="App.setCategoryFilter('all')" class="px-4 py-2 rounded-lg font-bold whitespace-nowrap transition-colors ${this.state.categoryFilter === 'all' ? 'bg-slate-800 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">All</button>`;
+                let html = `<button onclick="App.setCategoryFilter('all')" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors ${this.state.categoryFilter === 'all' ? 'bg-slate-800 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'}">All</button>`;
                 CATEGORIES.forEach(cat => {
                     const isActive = this.state.categoryFilter === cat.id;
-                    html += `<button onclick="App.setCategoryFilter('${cat.id}')" class="px-4 py-2 rounded-lg font-bold whitespace-nowrap transition-colors ${isActive ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">${cat.name}</button>`;
+                    const cTheme = THEMES[cat.theme];
+                    html += `<button onclick="App.setCategoryFilter('${cat.id}')" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors ${isActive ? cTheme.activeBg + ' text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'}">${cat.name}</button>`;
                 });
                 document.getElementById('category-filters').innerHTML = html;
             },
@@ -707,41 +708,29 @@
 
                 CATEGORIES.forEach(cat => {
                     if (this.state.categoryFilter !== 'all' && this.state.categoryFilter !== cat.id) return;
-                    
                     const filteredValues = cat.values.filter(v => v.toLowerCase().includes(this.state.searchTerm));
                     if (filteredValues.length === 0 && this.state.searchTerm) return;
 
+                    const cTheme = THEMES[cat.theme];
+
                     html += `
-                        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm relative overflow-hidden group/cat">
-                            <div class="absolute top-0 left-0 w-1.5 h-full bg-indigo-500/20 group-hover/cat:bg-indigo-500 transition-colors"></div>
-                            <div class="flex items-center space-x-4 mb-6 pl-2">
-                                <div class="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 border border-indigo-100 shadow-sm">
-                                    <i class="fa-solid ${cat.icon} text-lg"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-slate-900 text-xl leading-tight">${cat.name}</h3>
-                                    <p class="text-sm text-slate-500 mt-0.5">${cat.description}</p>
-                                </div>
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm relative overflow-hidden">
+                            <div class="absolute left-0 top-0 w-1.5 h-full ${cTheme.activeBg}"></div>
+                            <div class="flex items-center space-x-2.5 mb-4 pl-2">
+                                <div class="w-8 h-8 rounded-lg ${cTheme.iconBg} ${cTheme.text} flex items-center justify-center"><i class="fa-solid ${cat.icon} text-sm"></i></div>
+                                <h3 class="font-bold text-slate-900 text-base">${cat.name}</h3>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 pl-2">
+                            <div class="flex flex-wrap gap-2.5 pl-2">
                     `;
 
                     filteredValues.forEach(val => {
                         const isSelected = this.state.selectedValues.includes(val);
-                        
-                        // Checkbox UI Style for easier visual scanning
                         const cls = isSelected 
-                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-md ring-2 ring-indigo-600 ring-offset-1' 
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50 hover:shadow-sm';
+                            ? `${cTheme.activeBg} text-white border-transparent shadow-md` 
+                            : `bg-slate-50 text-slate-700 border-slate-200 hover:${cTheme.border} hover:${cTheme.bg} hover:${cTheme.text}`;
+                        const iconHtml = isSelected ? '<i class="fa-solid fa-check w-3 h-3 ml-1.5 opacity-90"></i>' : '';
                         
-                        const iconHtml = isSelected 
-                            ? '<i class="fa-solid fa-circle-check text-white/90 text-xl shrink-0"></i>' 
-                            : '<i class="fa-regular fa-circle text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity text-xl group-hover:text-indigo-400 shrink-0"></i>';
-                        
-                        html += `<button onclick="App.toggleValue('${val}')" class="group relative flex items-center justify-between gap-3 text-left px-4 py-3 min-h-[3.5rem] rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 border ${cls}">
-                            <span class="leading-tight break-words">${val}</span>
-                            ${iconHtml}
-                        </button>`;
+                        html += `<button onclick="App.toggleValue('${val}')" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border ${cls} flex items-center">${val} ${iconHtml}</button>`;
                     });
 
                     html += `</div></div>`;
@@ -750,19 +739,10 @@
                 container.innerHTML = html;
             },
 
-            getCategoryForValue(val) {
-                for (let cat of CATEGORIES) {
-                    if (cat.values.includes(val)) return cat.name;
-                }
-                return 'Custom / General';
-            },
-
+            // STEP 3 LOGIC (ACT Sort)
             initStep3() {
-                // Reset sort if they go back and change selections
                 const currentPool = this.state.selectedValues;
                 const sortedTotal = this.state.sortedValues.essential.length + this.state.sortedValues.important.length + this.state.sortedValues.secondary.length;
-                
-                // Simple reset strategy: if counts don't match, reset sorting.
                 if (currentPool.length !== sortedTotal || this.state.sortIndex >= currentPool.length) {
                     this.state.sortIndex = 0;
                     this.state.sortedValues = { essential: [], important: [], secondary: [] };
@@ -781,11 +761,23 @@
                     completeView.classList.add('hidden');
                     
                     const val = this.state.selectedValues[idx];
+                    const catObj = this.getCategoryObj(val);
+                    const cTheme = THEMES[catObj.theme];
+
                     document.getElementById('sort-progress-text').innerText = `Value ${idx + 1} of ${total}`;
                     document.getElementById('current-sort-value').innerText = val;
-                    document.getElementById('current-sort-category').innerText = this.getCategoryForValue(val);
                     
+                    const badge = document.getElementById('current-sort-category-badge');
+                    badge.className = `px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-6 flex items-center gap-2 ${cTheme.iconBg} ${cTheme.text}`;
+                    document.getElementById('current-sort-icon').className = `fa-solid ${catObj.icon}`;
+                    document.getElementById('current-sort-category').innerText = catObj.name;
+                    
+                    // Flashcard visual theme
+                    const card = document.getElementById('act-flashcard');
+                    card.className = `flex-1 rounded-3xl p-8 sm:p-12 shadow-lg border-2 flex flex-col items-center justify-center min-h-[45vh] sm:min-h-[55vh] transition-colors duration-300 relative bg-white ${cTheme.border}`;
+
                     document.getElementById('act-progress-bar').style.width = `${((idx) / Math.max(1, total)) * 100}%`;
+                    document.getElementById('act-progress-bar').className = `h-full transition-all duration-300 ${cTheme.activeBg}`;
                 } else {
                     activeView.classList.add('hidden');
                     completeView.classList.remove('hidden');
@@ -804,26 +796,19 @@
                 if (this.state.sortIndex === 0) return;
                 this.state.sortIndex--;
                 const prevVal = this.state.selectedValues[this.state.sortIndex];
-                
-                // Remove from whichever bucket it is in
                 ['essential', 'important', 'secondary'].forEach(b => {
                     this.state.sortedValues[b] = this.state.sortedValues[b].filter(v => v !== prevVal);
                 });
                 this.renderStep3();
             },
 
-            initStep4() {
-                this.renderStep4();
-            },
+            // STEP 4 LOGIC (Top 5 & Duel)
+            initStep4() { this.renderStep4(); },
 
             toggleTop5(val) {
                 const idx = this.state.topValues.indexOf(val);
-                if (idx > -1) {
-                    this.state.topValues.splice(idx, 1);
-                } else {
-                    if (this.state.topValues.length >= 5) return;
-                    this.state.topValues.push(val);
-                }
+                if (idx > -1) { this.state.topValues.splice(idx, 1); } 
+                else { if (this.state.topValues.length >= 5) return; this.state.topValues.push(val); }
                 this.renderStep4();
             },
 
@@ -844,18 +829,19 @@
                 let html = '';
                 essential.forEach(val => {
                     const isTop = this.state.topValues.includes(val);
-                    // Checkbox UI for Top 5 as well for consistency
-                    const cls = isTop 
-                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-md ring-2 ring-indigo-200 ring-offset-1' 
-                        : 'bg-white border-slate-200 hover:border-indigo-400 hover:bg-indigo-50 hover:shadow-sm';
-                    const textCls = isTop ? 'text-white' : 'text-slate-700';
-                    const iconHtml = isTop 
-                        ? '<i class="fa-solid fa-circle-check absolute right-4 top-1/2 -translate-y-1/2 text-white/90 text-lg"></i>' 
-                        : '<i class="fa-regular fa-circle absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 group-hover:opacity-100 transition-opacity text-lg group-hover:text-indigo-400"></i>';
+                    const catObj = this.getCategoryObj(val);
+                    const cTheme = THEMES[catObj.theme];
+                    
+                    const cls = isTop ? `${cTheme.bg} ${cTheme.border} shadow-md ring-2 ${cTheme.ring} ring-offset-1` : `bg-white border-slate-200 hover:${cTheme.border} hover:${cTheme.bg} hover:shadow-sm`;
+                    const iconHtml = isTop ? `<i class="fa-solid fa-circle-check absolute right-4 top-1/2 -translate-y-1/2 ${cTheme.text} text-xl"></i>` : '';
                     
                     html += `
-                        <button onclick="App.toggleTop5('${val}')" class="group relative text-left pl-4 pr-12 py-4 rounded-xl font-bold transition-all duration-200 border ${cls}">
-                            <span class="${textCls}">${val}</span>
+                        <button onclick="App.toggleTop5('${val}')" class="group relative text-left p-4 rounded-xl font-bold transition-all duration-200 border ${cls}">
+                            <div class="flex items-center gap-2 mb-2 pr-6">
+                               <div class="w-6 h-6 rounded flex items-center justify-center ${cTheme.iconBg} ${cTheme.text}"><i class="fa-solid ${catObj.icon} text-[10px]"></i></div>
+                               <span class="text-[9px] uppercase tracking-wider font-black ${cTheme.text}">${catObj.name}</span>
+                            </div>
+                            <span class="text-slate-800 text-lg block pr-8">${val}</span>
                             ${iconHtml}
                         </button>
                     `;
@@ -872,12 +858,9 @@
                 pool.forEach(v => { scores[v] = 0; });
 
                 for (let i = 0; i < pool.length; i++) {
-                    for (let j = i + 1; j < pool.length; j++) {
-                        pairs.push([pool[i], pool[j]]);
-                    }
+                    for (let j = i + 1; j < pool.length; j++) { pairs.push([pool[i], pool[j]]); }
                 }
 
-                // Shuffle
                 this.state.duelPairs = pairs.sort(() => Math.random() - 0.5).slice(0, Math.min(15, pairs.length));
                 this.state.duelScores = scores;
                 
@@ -889,7 +872,6 @@
             renderDuel() {
                 if (this.state.duelPairs.length === 0) {
                     this.cancelDuel();
-                    // Auto select top 5
                     const sorted = Object.keys(this.state.duelScores).sort((a, b) => this.state.duelScores[b] - this.state.duelScores[a]);
                     this.state.topValues = sorted.slice(0, 5);
                     this.renderStep4();
@@ -898,11 +880,8 @@
 
                 document.getElementById('duel-progress').innerText = `Match ${this.state.duelPairs.length} remaining`;
                 const pair = this.state.duelPairs[0];
-                const btn1 = document.getElementById('btn-duel-1');
-                const btn2 = document.getElementById('btn-duel-2');
-                
-                btn1.innerText = pair[0];
-                btn2.innerText = pair[1];
+                document.getElementById('btn-duel-1').innerText = pair[0];
+                document.getElementById('btn-duel-2').innerText = pair[1];
             },
 
             handleDuelChoice(btnIndex) {
@@ -912,27 +891,19 @@
                 this.state.duelPairs.shift();
                 this.renderDuel();
             },
-
+            
             cancelDuel() {
                 document.getElementById('duel-modal').classList.add('hidden');
                 document.getElementById('top5-container').classList.remove('hidden');
             },
 
+            // STEP 5 LOGIC (Behaviors)
             initStep5() {
-                // Ensure behavior objects exist for top values
-                this.state.topValues.forEach(val => {
-                    if (!this.state.behaviors[val]) {
-                        this.state.behaviors[val] = { actions: '', warning: '' };
-                    }
-                });
+                this.state.topValues.forEach(val => { if (!this.state.behaviors[val]) { this.state.behaviors[val] = { actions: '', warning: '' }; } });
                 this.renderStep5();
             },
 
-            updateBehavior(val, field, element) {
-                if (this.state.behaviors[val]) {
-                    this.state.behaviors[val][field] = element.value;
-                }
-            },
+            updateBehavior(val, field, element) { if (this.state.behaviors[val]) { this.state.behaviors[val][field] = element.value; } },
 
             renderStep5() {
                 const container = document.getElementById('behaviors-container');
@@ -940,25 +911,34 @@
 
                 this.state.topValues.forEach((val, idx) => {
                     const b = this.state.behaviors[val];
+                    const catObj = this.getCategoryObj(val);
+                    const cTheme = THEMES[catObj.theme];
+
                     html += `
-                        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
-                            <div class="flex items-center space-x-4 mb-6 border-b border-slate-100 pb-4">
-                                <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-black flex items-center justify-center text-lg">#${idx + 1}</span>
-                                <h3 class="text-2xl font-extrabold text-slate-900">${val}</h3>
+                        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1.5 h-full ${cTheme.activeBg}"></div>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-10 h-10 shrink-0 rounded-xl ${cTheme.iconBg} ${cTheme.text} font-black flex items-center justify-center text-lg shadow-inner">#${idx + 1}</span>
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-none">${val}</h3>
+                                </div>
+                                <div class="hidden sm:block h-6 w-px bg-slate-200"></div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg ${cTheme.bg} ${cTheme.text} border ${cTheme.border} text-xs font-bold uppercase tracking-wider w-fit">
+                                    <i class="fa-solid ${catObj.icon}"></i> <span>${catObj.name}</span>
+                                </div>
                             </div>
+                            
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-3">
                                     <label class="flex items-center space-x-2 text-sm font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg w-fit">
-                                        <i class="fa-solid fa-check"></i>
-                                        <span>Behaviors that support this:</span>
+                                        <i class="fa-solid fa-check"></i><span>Behaviors that support this:</span>
                                     </label>
                                     <textarea rows="3" oninput="App.updateBehavior('${val}', 'actions', this)" placeholder="E.g., I speak up in meetings even when it's uncomfortable..." class="w-full text-sm p-4 rounded-xl border border-emerald-200 bg-emerald-50/20 focus:ring-4 focus:ring-emerald-500/20 outline-none transition-all resize-none">${b.actions}</textarea>
                                 </div>
                                 <div class="space-y-3">
                                     <label class="flex items-center space-x-2 text-sm font-bold text-rose-700 bg-rose-50 px-3 py-1.5 rounded-lg w-fit">
-                                        <i class="fa-solid fa-triangle-exclamation"></i>
-                                        <span>Warning sign I'm off track:</span>
+                                        <i class="fa-solid fa-triangle-exclamation"></i><span>Warning sign I'm off track:</span>
                                     </label>
                                     <textarea rows="3" oninput="App.updateBehavior('${val}', 'warning', this)" placeholder="E.g., I start avoiding difficult conversations..." class="w-full text-sm p-4 rounded-xl border border-rose-200 bg-rose-50/20 focus:ring-4 focus:ring-rose-500/20 outline-none transition-all resize-none">${b.warning}</textarea>
                                 </div>
@@ -969,95 +949,78 @@
                 container.innerHTML = html;
             },
 
-            initStep6() {
-                this.renderStep6();
-            },
+            // STEP 6 LOGIC (Blueprint)
+            initStep6() { this.renderStep6(); },
 
             renderStep6() {
-                // Core 5
                 const coreContainer = document.getElementById('blueprint-core5');
                 let coreHtml = '';
                 this.state.topValues.forEach((val, i) => {
                     const b = this.state.behaviors[val] || {};
+                    const catObj = this.getCategoryObj(val);
+                    const cTheme = THEMES[catObj.theme];
+
                     let actionHtml = '';
                     if (b.actions) actionHtml += `<div class="p-5 rounded-xl bg-white border border-slate-100 shadow-sm"><span class="block text-xs font-bold text-emerald-600 uppercase tracking-wider mb-2 flex items-center gap-1.5"><i class="fa-solid fa-check"></i> Behavior</span><p class="text-sm text-slate-700 font-medium">${b.actions}</p></div>`;
                     if (b.warning) actionHtml += `<div class="p-5 rounded-xl bg-white border border-slate-100 shadow-sm"><span class="block text-xs font-bold text-rose-600 uppercase tracking-wider mb-2 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Warning Sign</span><p class="text-sm text-slate-700 font-medium">${b.warning}</p></div>`;
 
                     coreHtml += `
-                        <div class="p-6 sm:p-8 rounded-2xl bg-indigo-50/50 border border-indigo-100">
+                        <div class="p-6 sm:p-8 rounded-2xl ${cTheme.bg} border ${cTheme.border}">
                             <div class="flex items-center space-x-4 mb-5">
-                                <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-md">#${i+1}</div>
+                                <div class="w-12 h-12 rounded-xl ${cTheme.activeBg} text-white flex items-center justify-center font-bold text-xl shadow-md shrink-0">#${i+1}</div>
                                 <div>
-                                    <h3 class="text-3xl font-extrabold text-slate-900 leading-none mb-1">${val}</h3>
-                                    <span class="text-xs text-indigo-600 font-bold uppercase tracking-widest">${this.getCategoryForValue(val)}</span>
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-none mb-1.5">${val}</h3>
+                                    <span class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border bg-white ${cTheme.text} ${cTheme.border}"><i class="fa-solid ${catObj.icon}"></i> ${catObj.name}</span>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                                ${actionHtml}
-                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">${actionHtml}</div>
                         </div>
                     `;
                 });
                 coreContainer.innerHTML = coreHtml;
 
-                // Supporting Values
                 const supportingList = this.state.sortedValues.essential.filter(v => !this.state.topValues.includes(v));
                 const suppContainer = document.getElementById('blueprint-supporting-container');
                 if (supportingList.length > 0) {
                     suppContainer.classList.remove('hidden');
                     let suppHtml = '';
                     supportingList.forEach(v => {
-                        suppHtml += `<span class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 font-bold text-sm border border-slate-200">${v}</span>`;
+                        const sCat = this.getCategoryObj(v);
+                        const sTheme = THEMES[sCat.theme];
+                        suppHtml += `<span class="px-4 py-2 rounded-xl bg-white text-slate-700 font-bold text-sm border ${sTheme.border} shadow-sm inline-flex items-center gap-2"><i class="fa-solid ${sCat.icon} ${sTheme.text} text-xs"></i> ${v}</span>`;
                     });
                     document.getElementById('blueprint-supporting').innerHTML = suppHtml;
                 } else {
                     suppContainer.classList.add('hidden');
                 }
 
-                // Anchors
                 const hText = this.state.inspirations.heroes;
                 const lText = this.state.inspirations.legacy;
                 const legContainer = document.getElementById('blueprint-legacy');
-                const pHeroesCont = document.getElementById('blueprint-heroes-container');
-                const pLegacyCont = document.getElementById('blueprint-legacy-container');
-                const pHeroes = document.getElementById('blueprint-heroes-text');
-                const pLegacy = document.getElementById('blueprint-legacy-text');
-
                 if (hText || lText) {
                     legContainer.classList.remove('hidden');
-                    if (hText) { pHeroesCont.classList.remove('hidden'); pHeroes.innerText = `"${hText}"`; } else { pHeroesCont.classList.add('hidden'); }
-                    if (lText) { pLegacyCont.classList.remove('hidden'); pLegacy.innerText = `"${lText}"`; } else { pLegacyCont.classList.add('hidden'); }
+                    const pHeroesCont = document.getElementById('blueprint-heroes-container');
+                    const pLegacyCont = document.getElementById('blueprint-legacy-container');
+                    
+                    if (hText) { pHeroesCont.classList.remove('hidden'); document.getElementById('blueprint-heroes-text').innerText = `"${hText}"`; } 
+                    else { pHeroesCont.classList.add('hidden'); }
+                    
+                    if (lText) { pLegacyCont.classList.remove('hidden'); document.getElementById('blueprint-legacy-text').innerText = `"${lText}"`; } 
+                    else { pLegacyCont.classList.add('hidden'); }
                 } else {
                     legContainer.classList.add('hidden');
                 }
             },
 
             copyManifesto() {
-                const text = `MY CORE VALUES BLUEPRINT
-(Integrated Personal Values Framework)
-
-MY CORE 5 VALUES:
-${this.state.topValues.map((v, i) => `${i + 1}. ${v.toUpperCase()}
-   Category: ${this.getCategoryForValue(v)}
-   Behaviors: ${this.state.behaviors[v]?.actions || 'Not defined'}
-   Warning signs: ${this.state.behaviors[v]?.warning || 'Not defined'}`).join('\n\n')}
-
-Generated via The Holistic Values Identifier`;
-
-                if (navigator.clipboard && window.isSecureContext) {
-                    navigator.clipboard.writeText(text);
-                } else {
-                    // Fallback for non-https / older browsers
-                    let textArea = document.createElement("textarea");
-                    textArea.value = text;
-                    textArea.style.position = "fixed";
-                    textArea.style.left = "-999999px";
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    try {
-                        document.execCommand('copy');
-                    } catch (err) {}
+                const text = `MY CORE VALUES BLUEPRINT\n\nMY CORE 5 VALUES:\n${this.state.topValues.map((v, i) => `${i + 1}. ${v.toUpperCase()}\n   Category: ${this.getCategoryObj(v).name}\n   Behaviors: ${this.state.behaviors[v]?.actions || 'Not defined'}\n   Warning signs: ${this.state.behaviors[v]?.warning || 'Not defined'}`).join('\n\n')}`;
+                
+                if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text); } 
+                else {
+                    let textArea = document.createElement("textarea"); textArea.value = text;
+                    textArea.style.position = "fixed"; textArea.style.left = "-999999px";
+                    document.body.appendChild(textArea); textArea.focus(); textArea.select();
+                    try { document.execCommand('copy'); } catch (err) {}
                     document.body.removeChild(textArea);
                 }
 
@@ -1066,48 +1029,21 @@ Generated via The Holistic Values Identifier`;
                 setTimeout(() => { btnText.innerText = 'Copy Text'; }, 3000);
             },
 
-            confirmReset() {
-                if (this.state.step > 0) {
-                    document.getElementById('custom-modal').classList.add('active');
-                }
-            },
+            confirmReset() { if (this.state.step > 0) { document.getElementById('custom-modal').classList.add('active'); } },
 
             resetApp() {
-                this.state = {
-                    step: 0,
-                    inspirations: { heroes: '', legacy: '' },
-                    selectedValues: [],
-                    searchTerm: '',
-                    categoryFilter: 'all',
-                    sortIndex: 0,
-                    sortedValues: { essential: [], important: [], secondary: [] },
-                    topValues: [],
-                    duelActive: false,
-                    duelPairs: [],
-                    duelScores: {},
-                    behaviors: {}
-                };
-                
-                // Clear inputs
-                document.getElementById('input-heroes').value = '';
-                document.getElementById('input-legacy').value = '';
-                document.getElementById('search-input').value = '';
-                document.getElementById('custom-input').value = '';
-                
+                this.state = { step: 0, inspirations: { heroes: '', legacy: '' }, selectedValues: [], searchTerm: '', categoryFilter: 'all', sortIndex: 0, sortedValues: { essential: [], important: [], secondary: [] }, topValues: [], duelActive: false, duelPairs: [], duelScores: {}, behaviors: {} };
+                document.getElementById('input-heroes').value = ''; document.getElementById('input-legacy').value = '';
+                document.getElementById('search-input').value = ''; document.getElementById('custom-input').value = '';
                 document.getElementById('custom-modal').classList.remove('active');
                 
-                // Ensure UI Counter resets properly 
                 this.updateStep2Counter();
-                
                 this.init();
                 this.goToStep(0);
             }
         };
 
-        // Initialize App
-        window.onload = () => {
-            App.init();
-        };
+        window.onload = () => { App.init(); };
     </script>
 </body>
 </html>
