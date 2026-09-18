@@ -67,7 +67,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-slate-900 tracking-tight leading-none text-base sm:text-lg">Holistic Values Identifier</h1>
-                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v3.0</span>
+                        <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-500 border border-slate-200">v3.1</span>
                     </div>
                     <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-0.5">Integrated Framework App</p>
                 </div>
@@ -342,11 +342,11 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-                    <button onclick="App.handleDuelChoice(1)" class="p-8 sm:p-10 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 border-2 border-slate-100 transition-all text-center shadow-sm hover:shadow-md group">
+                    <button onclick="App.handleDuelChoice(1, this)" class="p-8 sm:p-10 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 border-2 border-slate-100 transition-all text-center shadow-sm hover:shadow-md group">
                         <div id="btn-duel-1-icon" class="text-sm font-bold text-slate-400 mb-2 group-hover:text-indigo-500 transition-colors"></div>
                         <div id="btn-duel-1" class="text-3xl font-extrabold text-slate-900 group-hover:text-indigo-700 transition-colors"></div>
                     </button>
-                    <button onclick="App.handleDuelChoice(2)" class="p-8 sm:p-10 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 border-2 border-slate-100 transition-all text-center shadow-sm hover:shadow-md group">
+                    <button onclick="App.handleDuelChoice(2, this)" class="p-8 sm:p-10 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 border-2 border-slate-100 transition-all text-center shadow-sm hover:shadow-md group">
                         <div id="btn-duel-2-icon" class="text-sm font-bold text-slate-400 mb-2 group-hover:text-indigo-500 transition-colors"></div>
                         <div id="btn-duel-2" class="text-3xl font-extrabold text-slate-900 group-hover:text-indigo-700 transition-colors"></div>
                     </button>
@@ -593,6 +593,15 @@
                 }
 
                 this.renderHeader();
+                
+                // Dynamically sync sticky height offset to match actual header height
+                setTimeout(() => {
+                    const header = document.getElementById('main-header');
+                    if (header) {
+                        document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+                    }
+                }, 10);
+                
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             },
 
@@ -856,7 +865,11 @@
                 document.getElementById('btn-duel-2-icon').innerHTML = `<i class="fa-solid ${cat2.icon} mr-1"></i> ${cat2.name}`;
             },
 
-            handleDuelChoice(btnIndex) {
+            handleDuelChoice(btnIndex, element) {
+                // Clear active element to remove stuck mobile hover states
+                if (element) element.blur();
+                if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+
                 const pair = this.state.duelPairs[0];
                 const winner = btnIndex === 1 ? pair[0] : pair[1];
                 this.state.duelScores[winner]++;
